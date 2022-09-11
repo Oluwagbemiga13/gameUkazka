@@ -1,19 +1,45 @@
 package org.example;
 
+import org.example.GameGenerator;
+
 import java.util.ArrayList;
 
 import static java.lang.Math.round;
 import static java.text.ChoiceFormat.nextDouble;
+import static org.example.GameGenerator.creatureArrayList;
 import static org.example.Main.dice;
 
-public class Creature {
+public class Creature implements Cloneable {
     String name;
     int hP;
     int attackPoints;
     boolean isDead;
+    int positionArrayList;
+
+    public static String nameOfPlayer = "Daniel";
+
+    public static int counterOfNPCCreated = 0;
     ArrayList<Weapon> weaponInventory;
 
     ArrayList<Weapon> lootInventory;
+
+    // CONSTRUCTOR
+    public Creature(String name, int hP, int attackPoints){
+        this.name = name;
+        this.hP = hP;
+        this.attackPoints= attackPoints;
+        weaponInventory = new ArrayList<>();
+        lootInventory = new ArrayList<>();
+        isDead = false;
+        positionArrayList = counterOfNPCCreated;
+        counterOfNPCCreated++;
+
+        this.fillNPCInventory();
+
+        creatureArrayList.add(this);
+
+        System.out.println("\n" + this.name + " was created" + " " + this.attackPoints + "/" + this.hP);
+    }
 
     /***
      *
@@ -67,46 +93,6 @@ public class Creature {
         }
     }
 
-    /***
-     *
-     * @param oponent = oponent
-     */
-    public void attack(Creature oponent){
-        if (!oponent.isDead && !this.isDead) {
-            int weaponAttackPoints = 0;
-            int totalAttackPoints = this.attackPoints;
-            // if there is weapon
-            if (!this.weaponInventory.isEmpty()) {
-                weaponAttackPoints = this.attackPoints + getBestWeapon(this).extraAttackPoints;
-                totalAttackPoints = this.attackPoints + weaponAttackPoints;
-            }
-            oponent.hP = oponent.hP - totalAttackPoints;
-            if (oponent.hP <= 0) {
-                oponent.isDead = true;
-            }
-            System.out.println("\n" + this.name + " attacked " + oponent.name + " and dealt " + totalAttackPoints + " damage.");
-
-            counterAtack(this, oponent);
-        }
-
-        if(this.isDead){
-            Player.killPlayer(this);
-        }
-        oponent.printStats();
-    }
-
-    public void fight(Creature c){
-        while(!this.isDead && !this.isDead) {
-            this.attack(c);
-        }
-        // If creature dies
-        if (c.isDead){
-            System.out.println(c.name + " died.");
-            for (Weapon w: c.lootInventory){
-                this.pickUpWeapon(w);
-            }
-        }
-    }
 
     public void printStats(){
         System.out.println(this.name + " " + this.attackPoints + "/" + this.hP);
@@ -143,16 +129,6 @@ public class Creature {
             this.lootInventory.add(drakobijec);
         }
     }
-    public Creature(String name, int hP, int attackPoints){
-        this.name = name;
-        this.hP = hP;
-        this.attackPoints= attackPoints;
-        weaponInventory = new ArrayList<>();
-        lootInventory = new ArrayList<>();
-        isDead = false;
 
-        fillNPCInventory();
 
-        System.out.println("\n" + this.name + " was created" + " " + this.attackPoints + "/" + this.hP);
-    }
 }
