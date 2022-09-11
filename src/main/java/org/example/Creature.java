@@ -41,6 +41,12 @@ public class Creature implements Cloneable {
         System.out.println("\n" + this.name + " was created" + " " + this.attackPoints + "/" + this.hP);
     }
 
+    public void die(){
+        int indexToDelete = this.positionArrayList;
+        creatureArrayList.remove(indexToDelete);
+        System.out.println(this.name + " died.");
+    }
+
     /***
      *
      * @return best weapon form invenotry
@@ -62,9 +68,6 @@ public class Creature implements Cloneable {
         return tempW;
     }
 
-    public void die(){
-        this.isDead = true;
-    }
 
     public static void fight(Creature attacker, Creature defender){
 
@@ -73,23 +76,26 @@ public class Creature implements Cloneable {
         }
         else{
             if(!attacker.weaponInventory.isEmpty()){
-                defender.hP = defender.hP - attacker.attackPoints + getBestWeapon(attacker).extraAttackPoints;
-                if(defender.hP < 1){
-                    defender.isDead = true;
-                }
+                Weapon bestWeapon = getBestWeapon(attacker);
+                int attackPointsTotal = attacker.attackPoints + bestWeapon.extraAttackPoints;
+                defender.hP = defender.hP - attackPointsTotal;
+                System.out.println(attacker.name + " attacked " + defender.name + " with " + bestWeapon.name
+                        + " and dealt " +  attackPointsTotal + " DMG.");
             }
             else{
                 defender.hP = defender.hP - attacker.attackPoints;
             }
-            if(defender.isDead){
-                System.out.println(defender.name + " died.");
+            if(defender.hP < 1){
                 defender.isDead = true;
+                System.out.println(defender.name + " died.");
+                pickUpWeapon(attacker,defender);
             }
             else {
                 counterAtack(attacker,defender);
+                attacker.printStats();
+                defender.printStats();
             }
-            attacker.printStats();
-            defender.printStats();
+
         }
     }
 
@@ -109,9 +115,15 @@ public class Creature implements Cloneable {
         }
     }
 
-    public void pickUpWeapon(Weapon weapon){
-        this.weaponInventory.add(weapon);
-        System.out.println(this.name + " picked up " + weapon.name + " " + weapon.extraAttackPoints + " DMG.");
+    public static void pickUpWeapon(Creature player, Creature nPC){
+        if(!nPC.lootInventory.isEmpty()) {
+            Weapon weapon = nPC.lootInventory.get(0);
+            player.weaponInventory.add(weapon);
+            System.out.println(player.name + " picked up " + weapon.name + " " + weapon.extraAttackPoints + " DMG.");
+        }
+        else{
+            System.out.println("There is no weapon to loot.");
+        }
     }
 
     public void fillNPCInventory(){
