@@ -19,7 +19,7 @@ public class GameGenerator {
     }
 
     public static Creature createSpider(){
-        return new NPC("Spider", 50, 5);
+        return new NPC("Spider", 50, 10);
     }
 
     public static Creature createDragon(){
