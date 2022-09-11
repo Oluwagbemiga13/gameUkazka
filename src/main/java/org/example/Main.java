@@ -1,7 +1,8 @@
 package org.example;
 
-import org.example.creatures.NPC;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 import static org.example.Creature.fight;
@@ -11,7 +12,7 @@ public class Main {
 
     public static Random dice;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         Random randomizer = new Random();
         dice = randomizer;
@@ -51,5 +52,10 @@ public class Main {
         while (!creatureArrayList.get(4).isDead && !creatureArrayList.get(0).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(4));
         }
+
+        System.out.println("Pres any key and enter to exit program.");
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        in.readLine();
     }
+
 }

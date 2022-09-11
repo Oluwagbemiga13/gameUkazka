@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.creatures.NPC;
-
 import java.util.ArrayList;
 
 import static org.example.Creature.nameOfPlayer;

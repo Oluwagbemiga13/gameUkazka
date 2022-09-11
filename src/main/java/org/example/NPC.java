@@ -1,4 +1,4 @@
-package org.example.creatures;
+package org.example;
 
 import org.example.Creature;
 
