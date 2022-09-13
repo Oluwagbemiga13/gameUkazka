@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.GameGenerator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static java.lang.Math.round;
@@ -9,7 +10,8 @@ import static java.text.ChoiceFormat.nextDouble;
 import static org.example.GameGenerator.creatureArrayList;
 import static org.example.Main.dice;
 
-public class Creature implements Cloneable {
+public class Creature  implements Serializable {
+
     String name;
     int hP;
     int attackPoints;

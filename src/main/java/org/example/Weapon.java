@@ -1,6 +1,9 @@
 package org.example;
 
-public class Weapon {
+import java.io.Serializable;
+
+public class Weapon implements Serializable {
+
     String name;
     int extraAttackPoints;
 

@@ -3,16 +3,19 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.example.Creature.fight;
 import static org.example.GameGenerator.*;
+import static org.example.SerTool.loadCreatureArrayList;
+import static org.example.SerTool.saveEverything;
 
 public class Main {
 
     public static Random dice;
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
 
         Random randomizer = new Random();
         dice = randomizer;
@@ -22,6 +25,12 @@ public class Main {
         System.out.println("Hello world!");
 
         createNPCs(1);
+        saveEverything();
+        ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
+
+        for(Creature creature : testCreature){
+            System.out.println(creature.name + "_TEST");
+        }
 
         Weapon sword = new Weapon("Sword ", 10);
         Weapon mace = new Weapon("Mace", 20);
@@ -38,14 +47,13 @@ public class Main {
             }
         }
 
+        //Testing gameplay
         while (!creatureArrayList.get(1).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(1));
         }
-
         while (!creatureArrayList.get(2).isDead && !creatureArrayList.get(0).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(2));
         }
-
         while (!creatureArrayList.get(3).isDead && !creatureArrayList.get(0).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(3));
         }

@@ -1,6 +1,8 @@
 package org.example;
 
-public class Player extends Creature {
+import java.io.Serializable;
+
+public class Player extends Creature implements Serializable {
 
 
     public static void killPlayer( Creature player){
