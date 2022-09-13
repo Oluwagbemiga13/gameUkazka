@@ -25,12 +25,15 @@ public class Creature  implements Serializable {
 
     ArrayList<Weapon> lootInventory;
 
+    ArrayList<Item> itemInventory;
+
     // CONSTRUCTOR
     public Creature(String name, int hP, int attackPoints){
         this.name = name;
         this.hP = hP;
         this.attackPoints= attackPoints;
         weaponInventory = new ArrayList<>();
+        itemInventory = new ArrayList<>();
         lootInventory = new ArrayList<>();
         isDead = false;
         positionArrayList = counterOfNPCCreated;
@@ -42,6 +45,10 @@ public class Creature  implements Serializable {
 
         System.out.println("\n" + this.name + " was created" + " " + this.attackPoints + "/" + this.hP);
     }
+
+
+
+
 
     public void die(){
         int indexToDelete = this.positionArrayList;

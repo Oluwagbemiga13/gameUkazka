@@ -15,6 +15,7 @@ public class Main {
 
     public static Random dice;
 
+
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
 
         Random randomizer = new Random();
@@ -27,6 +28,11 @@ public class Main {
         createNPCs(1);
         saveEverything();
         ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
+
+
+        setPlayer();
+        System.out.println("Current player: " + currentPlayer.name);
+
 
         for(Creature creature : testCreature){
             System.out.println(creature.name + "_TEST");
@@ -47,7 +53,13 @@ public class Main {
             }
         }
 
+        Lore testLore = new Lore("TEST");
+        for(Event e : testLore.eventArrayList){
+            System.out.println(e.message);
+        }
+
         //Testing gameplay
+        /*
         while (!creatureArrayList.get(1).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(1));
         }
@@ -60,10 +72,13 @@ public class Main {
         while (!creatureArrayList.get(4).isDead && !creatureArrayList.get(0).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(4));
         }
+        */
 
+        /*
         System.out.println("Pres any key and enter to exit program.");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         in.readLine();
+         */
     }
 
 }

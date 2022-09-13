@@ -6,6 +6,8 @@ import static org.example.Creature.nameOfPlayer;
 
 public class GameGenerator {
 
+    public static Creature currentPlayer = null;
+
     public static Creature createPlayer(String name){
         return new Player(name, 100, 5);
     }
@@ -32,13 +34,10 @@ public class GameGenerator {
         }
     }
 
-
-
     public static void createNPCs(int difficulty){
-
+        createPlayer(nameOfPlayer);
         switch (difficulty){
             case 1:
-                createPlayer(nameOfPlayer);
                 createWitch();
                 createSkeleton();
                 createSpider();
@@ -50,13 +49,35 @@ public class GameGenerator {
         }
     }
 
+    public static Creature getAlivePlayer(ArrayList <Creature> arrayList){
+        Creature player = null;
+        for (Creature creature : arrayList){
+            if (creature.getClass().toString().equals("class org.example.Player")){
+                if (!creature.isDead)
+                    player = creature;
+                break;
+            }
+        }
+        return player;
+    }
+
+    public static void setPlayer(){
+        currentPlayer = getAlivePlayer(creatureArrayList);
+        System.out.println("Current player: " + currentPlayer.name);
+    }
     public static ArrayList<Creature> creatureArrayList;
+    public static ArrayList<Item> itemArrayList;
 
     public void fillGameWithCreatures(ArrayList<Creature> createdCreatures){
     }
 
+    public static Event createEvent(String type){
+        return new Event(type);
+    }
+
     public GameGenerator (String name){
         creatureArrayList = new ArrayList<>();
+        itemArrayList = new ArrayList<>();
     }
 
     public static void fillNPCsLootInventory(ArrayList<Creature> inputCreatureArrayList){
