@@ -26,10 +26,11 @@ public class Event {
         this.type = type;
         if (type.equals("fight")){
             creature = returnFirstAlive(creatureArrayList);
-            message = "FIGHT: Do you want to attack " + creature.name + " ?";
+            this.message = "FIGHT: Do you want to attack " + creature.name + " ?";
         }
-        if (type.equals("item"))
+        if (type.equals("item")) {
             item = new Item("ITEM");
-            message = "ITEM: ...";
+            this.message = "ITEM: ...";
+        }
     }
 }

@@ -72,6 +72,7 @@ public class GameGenerator {
     }
 
     public static Event createEvent(String type){
+
         return new Event(type);
     }
 
