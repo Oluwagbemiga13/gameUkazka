@@ -14,7 +14,8 @@ public class Event {
 
     public static Creature returnFirstAlive(ArrayList<Creature> creatures){
         Creature creature = null;
-        for (Creature c : creatures) {
+        for (int i = 0; i < creatureArrayList.size(); i++) {
+            Creature c = creatureArrayList.get(i);
             if (!c.isDead && !c.isSetInLore){
                 creature = c;
             }
@@ -28,6 +29,7 @@ public class Event {
             creature = returnFirstAlive(creatureArrayList);
             creature.isSetInLore = true;
             this.message = "FIGHT: Do you want to attack " + creature.name + " ?";
+            System.out.println(creature.name + " was added to Event.");
         }
         if (type.equals("item")) {
             item = new Item("ITEM");

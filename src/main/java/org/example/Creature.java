@@ -21,7 +21,7 @@ public class Creature  implements Serializable {
     public static int counterOfNPCCreated = 0;
     ArrayList<Weapon> weaponInventory;
 
-    ArrayList<Weapon> lootInventory;
+    ArrayList<Item> lootInventory;
 
     ArrayList<Item> itemInventory;
 
@@ -39,6 +39,7 @@ public class Creature  implements Serializable {
         isSetInLore = false;
         positionArrayList = counterOfNPCCreated;
         counterOfNPCCreated++;
+
 
         this.fillNPCInventory();
 
@@ -96,7 +97,7 @@ public class Creature  implements Serializable {
             if(defender.hP < 1){
                 defender.isDead = true;
                 System.out.println(defender.name + " died.");
-                pickUpWeapon(attacker,defender);
+                pickUpItem(attacker,defender);
             }
             else {
                 counterAtack(attacker,defender);
@@ -123,11 +124,11 @@ public class Creature  implements Serializable {
         }
     }
 
-    public static void pickUpWeapon(Creature player, Creature nPC){
+    public static void pickUpItem(Creature player, Creature nPC){
         if(!nPC.lootInventory.isEmpty()) {
-            Weapon weapon = nPC.lootInventory.get(0);
-            player.weaponInventory.add(weapon);
-            System.out.println(player.name + " picked up " + weapon.name + " " + weapon.extraAttackPoints + " DMG.");
+            Item item = nPC.lootInventory.get(0);
+            player.weaponInventory.add((Weapon) item);
+            System.out.println(player.name + " picked up " + item.name + " " + ((Weapon) item).extraAttackPoints + " DMG.");
         }
         else{
             System.out.println("There is no weapon to loot.");
@@ -135,20 +136,15 @@ public class Creature  implements Serializable {
     }
 
     public void fillNPCInventory(){
-        Weapon sword = new Weapon("Sword ", 10);
-        Weapon mace = new Weapon("Mace", 20);
-        Weapon drakobijec = new Weapon("Drakobijec", 150);
+        Item sword = new Weapon("sword");
+        Item mace = new Weapon("mace");
 
         if(this.name == "Skeleton"){
             this.lootInventory.add(sword);
-        }
+            }
         if(this.name == "Witch"){
             this.lootInventory.add(mace);
-        }
-        if(this.name == "Spider"){
-            this.lootInventory.add(drakobijec);
+            }
         }
     }
 
-
-}

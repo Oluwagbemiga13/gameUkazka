@@ -13,7 +13,8 @@ public class Lore {
     public ArrayList <Event> eventArrayList;
 
     public void goThroughLore(Creature player){
-        for(Event event : this.eventArrayList){
+        for(int i = 0; i < this.eventArrayList.size(); i++){
+            Event event = this.eventArrayList.get(i);
             if (event.type.equals("fight")){
                 while (!player.isDead){
                     fight(creatureArrayList.get(0), event.creature);

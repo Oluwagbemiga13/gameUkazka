@@ -7,6 +7,8 @@ import static org.example.Creature.nameOfPlayer;
 public class GameGenerator {
 
     public static Creature currentPlayer = null;
+    public static ArrayList<Creature> creatureArrayList;
+    public static ArrayList<Item> itemArrayList;
 
     public static Creature createPlayer(String name){
         return new Player(name, 100, 5);
@@ -38,8 +40,12 @@ public class GameGenerator {
         createPlayer(nameOfPlayer);
         switch (difficulty){
             case 1:
-                createWitch();
-                createSkeleton();
+                for(int i =0; i <5; i++) {
+                    createWitch();
+                }
+                for(int i =0; i <5; i++) {
+                    createSkeleton();
+                }
                 createSpider();
                 createDragon();
                 printOutNPCs();
@@ -65,8 +71,7 @@ public class GameGenerator {
         currentPlayer = getAlivePlayer(creatureArrayList);
         System.out.println("Current player: " + currentPlayer.name);
     }
-    public static ArrayList<Creature> creatureArrayList;
-    public static ArrayList<Item> itemArrayList;
+
 
     public void fillGameWithCreatures(ArrayList<Creature> createdCreatures){
     }

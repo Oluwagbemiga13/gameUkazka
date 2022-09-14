@@ -23,33 +23,26 @@ public class Main {
 
         GameGenerator level1 = new GameGenerator("Level 1");
 
-        System.out.println("Hello world!");
 
         createNPCs(1);
+
         saveEverything();
         ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
-
 
         setPlayer();
         System.out.println("Current player: " + currentPlayer.name);
 
 
         for(Creature creature : testCreature){
-            System.out.println(creature.name + "_TEST");
+            System.out.println(creature.name + "_TEST_LOAD");
         }
-
-        Weapon sword = new Weapon("Sword ", 10);
-        Weapon mace = new Weapon("Mace", 20);
-        Weapon drakobijec = new Weapon("Drakobijec", 150);
-
-        //System.out.println(skeleton.lootInventory.get(0).name);
 
         fillNPCsLootInventory(creatureArrayList);
 
         for (Creature creature : creatureArrayList) {
             if (!creature.lootInventory.isEmpty()) {
-                Weapon weapon = creature.lootInventory.get(0);
-                System.out.println(weapon.name + " + " + weapon.extraAttackPoints + " was added to " + creature.name + ".lootInventory");
+                Weapon weapon = (Weapon) creature.lootInventory.get(0);
+                System.out.println(weapon.nameOfWeapon + " + " + weapon.extraAttackPoints + " was added to " + creature.name + ".lootInventory");
             }
         }
 
@@ -58,7 +51,8 @@ public class Main {
             System.out.println(e.message);
         }
 
-        testLore.goThroughLore(creatureArrayList.get(0));
+        //testLore.goThroughLore(creatureArrayList.get(0));
+
 
         //Testing gameplay
         /*

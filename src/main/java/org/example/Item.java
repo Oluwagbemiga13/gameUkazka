@@ -1,12 +1,14 @@
 package org.example;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     String name;
     String type;
-    int damage;
-    int healingPoints;
+
 
     public Item(String name){
         this.name = name;
+         type = "item";
     }
 }
