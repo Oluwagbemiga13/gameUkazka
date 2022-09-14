@@ -58,6 +58,8 @@ public class Main {
             System.out.println(e.message);
         }
 
+        testLore.goThroughLore(creatureArrayList.get(0));
+
         //Testing gameplay
         /*
         while (!creatureArrayList.get(1).isDead) {

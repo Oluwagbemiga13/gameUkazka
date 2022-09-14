@@ -15,7 +15,7 @@ public class Event {
     public static Creature returnFirstAlive(ArrayList<Creature> creatures){
         Creature creature = null;
         for (Creature c : creatures) {
-            if (!c.isDead){
+            if (!c.isDead && !c.isSetInLore){
                 creature = c;
             }
         }
@@ -26,6 +26,7 @@ public class Event {
         this.type = type;
         if (type.equals("fight")){
             creature = returnFirstAlive(creatureArrayList);
+            creature.isSetInLore = true;
             this.message = "FIGHT: Do you want to attack " + creature.name + " ?";
         }
         if (type.equals("item")) {

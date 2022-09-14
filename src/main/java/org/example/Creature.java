@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.GameGenerator;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -27,6 +25,8 @@ public class Creature  implements Serializable {
 
     ArrayList<Item> itemInventory;
 
+    boolean isSetInLore;
+
     // CONSTRUCTOR
     public Creature(String name, int hP, int attackPoints){
         this.name = name;
@@ -36,6 +36,7 @@ public class Creature  implements Serializable {
         itemInventory = new ArrayList<>();
         lootInventory = new ArrayList<>();
         isDead = false;
+        isSetInLore = false;
         positionArrayList = counterOfNPCCreated;
         counterOfNPCCreated++;
 
@@ -45,10 +46,6 @@ public class Creature  implements Serializable {
 
         System.out.println("\n" + this.name + " was created" + " " + this.attackPoints + "/" + this.hP);
     }
-
-
-
-
 
     public void die(){
         int indexToDelete = this.positionArrayList;
@@ -93,6 +90,8 @@ public class Creature  implements Serializable {
             }
             else{
                 defender.hP = defender.hP - attacker.attackPoints;
+                System.out.println(attacker.name + " attacked " + defender.name
+                        + " and dealt " +  attacker.attackPoints + " DMG.");
             }
             if(defender.hP < 1){
                 defender.isDead = true;
