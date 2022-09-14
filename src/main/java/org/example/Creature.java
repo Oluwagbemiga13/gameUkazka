@@ -86,7 +86,7 @@ public class Creature  implements Serializable {
                 Weapon bestWeapon = getBestWeapon(attacker);
                 int attackPointsTotal = attacker.attackPoints + bestWeapon.extraAttackPoints;
                 defender.hP = defender.hP - attackPointsTotal;
-                System.out.println(attacker.name + " attacked " + defender.name + " with " + bestWeapon.name
+                System.out.println("\n" + attacker.name + " attacked " + defender.name + " with " + bestWeapon.nameOfWeapon
                         + " and dealt " +  attackPointsTotal + " DMG.");
             }
             else{
@@ -128,7 +128,10 @@ public class Creature  implements Serializable {
         if(!nPC.lootInventory.isEmpty()) {
             Item item = nPC.lootInventory.get(0);
             player.weaponInventory.add((Weapon) item);
-            System.out.println(player.name + " picked up " + item.name + " " + ((Weapon) item).extraAttackPoints + " DMG.");
+            if(item.getClass().toString().equals("class org.example.Weapon")) {
+                //System.out.println(item.getClass().toString());
+                System.out.println(player.name + " picked up " + ((Weapon) item).nameOfWeapon + " " + ((Weapon) item).extraAttackPoints + " DMG.");
+            }
         }
         else{
             System.out.println("There is no weapon to loot.");

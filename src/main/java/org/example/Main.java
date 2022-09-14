@@ -55,7 +55,7 @@ public class Main {
 
 
         //Testing gameplay
-        /*
+
         while (!creatureArrayList.get(1).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(1));
         }
@@ -68,7 +68,9 @@ public class Main {
         while (!creatureArrayList.get(4).isDead && !creatureArrayList.get(0).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(4));
         }
-        */
+
+
+
 
         /*
         System.out.println("Pres any key and enter to exit program.");
