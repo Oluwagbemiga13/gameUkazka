@@ -18,6 +18,7 @@ public class Event {
             Creature c = creatureArrayList.get(i);
             if (!c.isDead && !c.isSetInLore){
                 creature = c;
+                break;
             }
         }
         return creature;

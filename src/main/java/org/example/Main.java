@@ -51,15 +51,17 @@ public class Main {
             System.out.println(e.message);
         }
 
-        //testLore.goThroughLore(creatureArrayList.get(0));
+        testLore.goThroughLore(currentPlayer);
 
 
+        /*
         //Testing gameplay
         for(int i = 1; i< creatureArrayList.size(); i++){
             while (!creatureArrayList.get(i).isDead && !creatureArrayList.get(0).isDead){
                 fight(creatureArrayList.get(0), creatureArrayList.get(i));
             }
         }
+        */
         /*
         while (!creatureArrayList.get(1).isDead) {
             fight(creatureArrayList.get(0), creatureArrayList.get(1));
