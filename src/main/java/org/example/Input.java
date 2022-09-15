@@ -10,14 +10,14 @@ public class Input {
     }
 
     public String returnString(){
-        System.out.println("\nWrite your name and press enter.");
+        System.out.println("Write your name and press enter.");
         return scanner.next();
     }
     public boolean returnDoIt(){
         boolean isValid = false;
         boolean tempB = false;
         while(!isValid) {
-            System.out.println("\nPress Y/N and than enter.");
+            System.out.println("Press Y/N and than enter.");
             String userInput = scanner.next().toUpperCase();
             if (userInput.equals("Y")) {
                 isValid = true;

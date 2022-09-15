@@ -39,17 +39,20 @@ public class Main {
         Lore testLore = new Lore("TEST");
 
         //Test game
-        //testLore.goThroughLore(currentPlayer);
-
-        for (Event event : testLore.eventArrayList){
-            System.out.println(event.typeOfEventVar.toString());
-            System.out.println(event.message);
-        }
-
         for(Event event : testLore.eventArrayList){
             event.consumeEvent();
+            currentPlayer.printStats();
+            if(currentPlayer.hP < 60){
+                currentPlayer.heal();
+            }
         }
+        
 
+
+//        currentPlayer.itemInventory.add(new Potion(Potion.Type.HEAL, Potion.Strenght.BEST));
+//        System.out.println(currentPlayer.itemInventory.get(0).name);
+//        currentPlayer.heal();
+//        currentPlayer.printStats();
 
 
         /*

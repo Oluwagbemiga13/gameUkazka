@@ -13,6 +13,9 @@ public class Event {
     Item item;
     String message;
 
+    int plusHP = 0;
+    int minusHP = 0;
+
     TypeOfEvent typeOfEventVar;
     Difficulty difficultyVar;
 
@@ -27,8 +30,6 @@ public class Event {
         REST,
         FIND
     }
-
-
 
     public static Creature returnFirstAlive(ArrayList<Creature> creatures){
         Creature creature = null;
@@ -73,10 +74,12 @@ public class Event {
                     break;
                 case MEDIUM:
                     message = "You rested little bit + 5HP \n IMPLEMENT DMG!";
+                    plusHP= 5;
                     break;
                 case HIGH:
-                    creature = createSpider();
                     message = "You opened your favourite bottle and it helped. + 10HP";
+                    plusHP = 10;
+                    break;
             }
 
         }
@@ -93,7 +96,10 @@ public class Event {
             }
         }
         if (typeOfEventVar.equals(TypeOfEvent.REST)){
-            System.out.println(message);
+
+            if(!difficultyVar.equals(Difficulty.LOW)){
+                currentPlayer.hP += this.plusHP;
+            }
         }
     }
 }

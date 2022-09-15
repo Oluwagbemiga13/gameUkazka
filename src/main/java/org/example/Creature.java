@@ -49,8 +49,7 @@ public class Creature  implements Serializable {
 
     public void die(){
         int indexToDelete = this.positionArrayList;
-        creatureArrayList.remove(indexToDelete);
-        System.out.println(this.name + " died.");
+        creatureArrayList.set(indexToDelete, null);
     }
 
     /***
@@ -91,8 +90,9 @@ public class Creature  implements Serializable {
             }
             if(defender.hP < 1){
                 defender.isDead = true;
-                System.out.println(defender.name + " died.");
+                System.out.println(defender.name + " died.\n");
                 pickUpItems(attacker,defender);
+                defender.die();
             }
             else {
                 counterAtack(attacker,defender);
@@ -125,12 +125,11 @@ public class Creature  implements Serializable {
                 if (item.getClass().toString().equals("class org.example.Weapon")) {
                     player.weaponInventory.add((Weapon) item);
                     //System.out.println(item.getClass().toString());
-                    System.out.println(player.name + " picked up " + ((Weapon) item).nameOfWeapon + " " + ((Weapon) item).extraAttackPoints + " DMG.");
+                    System.out.println(player.name + " picked up " + ((Weapon) item).nameOfWeapon + " +" + ((Weapon) item).extraAttackPoints + " DMG.");
                 }
                 else {
-                    player.itemInventory.add((Item) item);
-                    //System.out.println(item.getClass().toString());
-                    System.out.println(player.name + " picked up " + ((Potion) item).name + " " + ((Potion) item).healingPoints + " healing points.");
+                    player.itemInventory.add(item);
+                    System.out.println(player.name + " picked up " + item.name + " +" + item.healingPoints + " healing points.");
                 }
             }
         }
@@ -138,6 +137,20 @@ public class Creature  implements Serializable {
             System.out.println("There is no weapon to loot.");
         }
         player.equipBestWeapon();
+    }
+
+    public void heal(){
+
+        if(!itemInventory.isEmpty()) {
+            for(Item item : this.itemInventory){
+                if(item.healingPoints>0){
+                    this.hP += item.healingPoints;
+                    System.out.println(this.name + " drank " + item.name + " and got healed by " + item.healingPoints);
+                    this.itemInventory.remove(item);
+                    break;
+                }
+            }
+        }
     }
 
     public void fillNPCInventory(){
