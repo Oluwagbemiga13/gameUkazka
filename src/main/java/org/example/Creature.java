@@ -16,6 +16,8 @@ public class Creature  implements Serializable {
     boolean isDead;
     int positionArrayList;
 
+    Weapon equipedWeapon = null;
+
     public static String nameOfPlayer = "Daniel";
 
     public static int counterOfNPCCreated = 0;
@@ -58,21 +60,23 @@ public class Creature  implements Serializable {
      *
      * @return best weapon form invenotry
      */
-    public static Weapon getBestWeapon(Creature c){
+    public void getBestWeapon(){
         Weapon tempW = null;
-        if (!c.weaponInventory.isEmpty()) {
-            for (Weapon w : c.weaponInventory) {
-                if (tempW != null){
-                    if (w.extraAttackPoints > tempW.extraAttackPoints) {
-                        tempW = w;
-                    }
+
+        if (!this.weaponInventory.isEmpty()) {
+            if(this.equipedWeapon == null){
+                this.equipedWeapon = this.weaponInventory.get(0);
+            }
+            for (Weapon w : this.weaponInventory) {
+                if (w.extraAttackPoints > this.equipedWeapon.extraAttackPoints) {
+                    tempW = w;
                 }
                 else{
                     tempW = w;
                 }
+                this.equipedWeapon = tempW;
             }
         }
-        return tempW;
     }
 
 
@@ -82,22 +86,21 @@ public class Creature  implements Serializable {
             System.out.println("Unable to fight. - Someone is dead");
         }
         else{
-            if(!attacker.weaponInventory.isEmpty()){
-                Weapon bestWeapon = getBestWeapon(attacker);
-                int attackPointsTotal = attacker.attackPoints + bestWeapon.extraAttackPoints;
+            if(attacker.equipedWeapon != null){
+                int attackPointsTotal = attacker.attackPoints + attacker.equipedWeapon.extraAttackPoints;
                 defender.hP = defender.hP - attackPointsTotal;
-                System.out.println("\n" + attacker.name + " attacked " + defender.name + " with " + bestWeapon.nameOfWeapon
+                System.out.println("\n" + attacker.name + " attacked " + defender.name + " with " + attacker.equipedWeapon.nameOfWeapon
                         + " and dealt " +  attackPointsTotal + " DMG.");
             }
             else{
                 defender.hP = defender.hP - attacker.attackPoints;
                 System.out.println(attacker.name + " attacked " + defender.name
-                        + " and dealt " +  attacker.attackPoints + " DMG.");
+                        + " with bare hands and dealt " +  attacker.attackPoints + " DMG.");
             }
             if(defender.hP < 1){
                 defender.isDead = true;
                 System.out.println(defender.name + " died.");
-                pickUpItem(attacker,defender);
+                pickUpItems(attacker,defender);
             }
             else {
                 counterAtack(attacker,defender);
@@ -124,29 +127,41 @@ public class Creature  implements Serializable {
         }
     }
 
-    public static void pickUpItem(Creature player, Creature nPC){
+    public static void pickUpItems(Creature player, Creature nPC){
         if(!nPC.lootInventory.isEmpty()) {
-            Item item = nPC.lootInventory.get(0);
-            player.weaponInventory.add((Weapon) item);
-            if(item.getClass().toString().equals("class org.example.Weapon")) {
-                //System.out.println(item.getClass().toString());
-                System.out.println(player.name + " picked up " + ((Weapon) item).nameOfWeapon + " " + ((Weapon) item).extraAttackPoints + " DMG.");
+            for(Item item : nPC.lootInventory) {
+                if (item.getClass().toString().equals("class org.example.Weapon")) {
+                    player.weaponInventory.add((Weapon) item);
+                    //System.out.println(item.getClass().toString());
+                    System.out.println(player.name + " picked up " + ((Weapon) item).nameOfWeapon + " " + ((Weapon) item).extraAttackPoints + " DMG.");
+                }
+                else {
+                    player.itemInventory.add((Item) item);
+                    //System.out.println(item.getClass().toString());
+                    System.out.println(player.name + " picked up " + ((Potion) item).name + " " + ((Potion) item).healingPoints + " healing points.");
+                }
             }
         }
         else{
             System.out.println("There is no weapon to loot.");
         }
+        player.getBestWeapon();
     }
 
     public void fillNPCInventory(){
         Item sword = new Weapon("sword");
         Item mace = new Weapon("mace");
+        Item healingPotion1 = new Potion("Healing Potion", 10);
+        Item healingPotion2 = new Potion("Healing Potion", 20);
 
         if(this.name == "Skeleton"){
             this.lootInventory.add(sword);
+            this.lootInventory.add(healingPotion1);
+
             }
         if(this.name == "Witch"){
             this.lootInventory.add(mace);
+            this.lootInventory.add(healingPotion2);
             }
         }
     }
