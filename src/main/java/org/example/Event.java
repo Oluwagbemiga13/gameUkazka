@@ -80,16 +80,6 @@ public class Event {
             }
 
         }
-
-
-            creature.isSetInLore = true;
-            this.message = "FIGHT: Do you want to attack " + creature.name + " ?";
-            System.out.println(creature.name + " was added to Event.");
-
-        if (type.equals("item")) {
-            item = new Item("ITEM");
-            this.message = "ITEM: ...";
-        }
     }
 
     public void consumeEvent(){
@@ -101,6 +91,9 @@ public class Event {
                     fight(currentPlayer, creature);
                 }
             }
+        }
+        if (typeOfEventVar.equals(TypeOfEvent.REST)){
+            System.out.println(message);
         }
     }
 }

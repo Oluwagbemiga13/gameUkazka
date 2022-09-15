@@ -27,7 +27,9 @@ public class Main {
 
         GameGenerator gameGenerator = new GameGenerator("Level 1");
 
-        currentPlayer = createPlayer(input.returnString());
+        //currentPlayer = createPlayer(input.returnString());
+
+        currentPlayer = createPlayer("Dan");
 
         //saveEverything();
         //ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
@@ -38,6 +40,11 @@ public class Main {
 
         //Test game
         //testLore.goThroughLore(currentPlayer);
+
+        for (Event event : testLore.eventArrayList){
+            System.out.println(event.typeOfEventVar.toString());
+            System.out.println(event.message);
+        }
 
         for(Event event : testLore.eventArrayList){
             event.consumeEvent();

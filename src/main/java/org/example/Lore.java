@@ -11,19 +11,6 @@ public class Lore {
     public ArrayList <Weapon> weaponsLoreArray;
     public ArrayList <Event> eventArrayList;
 
-    public void goThroughLore(Creature player){
-        for(int i = 0; i < this.eventArrayList.size(); i++){
-            Event event = this.eventArrayList.get(i);
-            if (event.type.contains("FIGHT")){
-                while (!player.isDead && !event.creature.isDead){
-                    fight(player, event.creature);
-                }
-            }
-            else {
-                System.out.println("EVENT");
-            }
-        }
-    }
 
     public Lore(String name){
         this.name = name;
