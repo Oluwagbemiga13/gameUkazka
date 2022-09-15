@@ -3,7 +3,6 @@ package org.example;
 import java.util.ArrayList;
 
 import static org.example.Creature.fight;
-import static org.example.GameGenerator.createEvent;
 import static org.example.GameGenerator.creatureArrayList;
 
 public class Lore {
@@ -36,10 +35,10 @@ public class Lore {
         ArrayList <Event> tempB = new ArrayList<>();
 
         for (int i = 0; i < (creatureArrayList.size()-1); i++){
-            tempA.add(createEvent("fight"));
+            tempA.add(new Event(Event.TypeOfEvent.FIGHT, Event.Difficulty.LOW));
         }
         for (int i = 0; i < 5; i++){
-            tempB.add(createEvent("item"));
+            tempB.add(new Event(Event.TypeOfEvent.REST, Event.Difficulty.HIGH));
         }
         int counter = 0;
         for(int i = 0; i < tempA.size()-1; i++){

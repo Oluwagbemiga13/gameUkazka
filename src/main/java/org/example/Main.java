@@ -54,6 +54,8 @@ public class Main {
 
         testLore.goThroughLore(currentPlayer);
 
+        Item testPotion = new Potion(Potion.Type.HEAL, Potion.Strenght.BEST);
+        System.out.println(testPotion.name);
 
         /*
         //Testing gameplay

@@ -27,7 +27,7 @@ public class Weapon extends Item implements Serializable {
     public Weapon(String type) {
 
         super(type);
-        this.type = "weapon";
+        this.t = "weapon";
         if (type.equals("sword")) {
 
             int random = (int) round(dice.nextDouble() * 13);

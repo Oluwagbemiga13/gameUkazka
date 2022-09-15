@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Item implements Serializable {
     String name;
-    String type;
+    String t;
 
 
     public Item(String name){
         this.name = name;
-         type = "item";
+         t = "item";
     }
 }

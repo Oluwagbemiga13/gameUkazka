@@ -148,8 +148,8 @@ public class Creature  implements Serializable {
     public void fillNPCInventory(){
         Item sword = new Weapon("sword");
         Item mace = new Weapon("mace");
-        Item healingPotion1 = new Potion("Healing Potion", 10);
-        Item healingPotion2 = new Potion("Healing Potion", 20);
+        Item healingPotion1 = new Potion(Potion.Type.HEAL, Potion.Strenght.GOOD);
+        Item healingPotion2 = new Potion(Potion.Type.HEAL, Potion.Strenght.BETTER);
 
         if(this.name == "Skeleton"){
             this.lootInventory.add(sword);

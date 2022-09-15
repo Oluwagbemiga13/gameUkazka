@@ -76,10 +76,7 @@ public class GameGenerator {
     public void fillGameWithCreatures(ArrayList<Creature> createdCreatures){
     }
 
-    public static Event createEvent(String type){
 
-        return new Event(type);
-    }
 
     public GameGenerator (String name){
         creatureArrayList = new ArrayList<>();
