@@ -36,7 +36,7 @@ public class Main {
 
         System.out.println("Current player: " + currentPlayer.name);
 
-        Lore testLore = new Lore("TEST");
+        Lore testLore = new Lore(Lore.Difficulty.MODERATE);
 
         //Test game
         for(Event event : testLore.eventArrayList){
@@ -46,7 +46,7 @@ public class Main {
                 currentPlayer.heal();
             }
         }
-        
+
 
 
 //        currentPlayer.itemInventory.add(new Potion(Potion.Type.HEAL, Potion.Strenght.BEST));
