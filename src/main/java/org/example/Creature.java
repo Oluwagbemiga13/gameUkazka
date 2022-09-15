@@ -57,21 +57,16 @@ public class Creature  implements Serializable {
      *
      * @return best weapon form invenotry
      */
-    public void getBestWeapon(){
-        Weapon tempW = null;
+    public void equipBestWeapon(){
 
         if (!this.weaponInventory.isEmpty()) {
             if(this.equipedWeapon == null){
                 this.equipedWeapon = this.weaponInventory.get(0);
             }
-            for (Weapon w : this.weaponInventory) {
-                if (w.extraAttackPoints > this.equipedWeapon.extraAttackPoints) {
-                    tempW = w;
+            for (Weapon weapon : this.weaponInventory) {
+                if (weapon.extraAttackPoints > this.equipedWeapon.extraAttackPoints) {
+                    this.equipedWeapon = weapon;
                 }
-                else{
-                    tempW = w;
-                }
-                this.equipedWeapon = tempW;
             }
         }
     }
@@ -142,7 +137,7 @@ public class Creature  implements Serializable {
         else{
             System.out.println("There is no weapon to loot.");
         }
-        player.getBestWeapon();
+        player.equipBestWeapon();
     }
 
     public void fillNPCInventory(){
