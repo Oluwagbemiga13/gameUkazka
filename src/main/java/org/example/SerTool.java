@@ -58,5 +58,21 @@ public class SerTool {
     public static void saveEverything() throws IOException {
         saveCreatureArrayList(creatureArrayList);
     }
+    public static void saveLore(Lore lore) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(lore.name +".ser");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+        objectOutputStream.writeObject(lore);
+
+        objectOutputStream.close();
+        fileOutputStream.close();
+    }
+
+    public static Lore loadLore(String nameOfFile) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(nameOfFile);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+        return (Lore) objectInputStream.readObject();
+    }
 
 }

@@ -1,12 +1,13 @@
 package org.example;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static org.example.Creature.fight;
 import static org.example.GameGenerator.*;
 import static org.example.Main.input;
 
-public class Event {
+public class Event implements Serializable {
     String type;
     int positionInLoreArray;
     Creature creature;

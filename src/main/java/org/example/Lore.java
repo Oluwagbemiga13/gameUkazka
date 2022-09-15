@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static java.lang.Math.round;
@@ -8,8 +9,9 @@ import static org.example.GameGenerator.creatureArrayList;
 import static org.example.Main.dice;
 
 
-public class Lore {
+public class Lore implements Serializable {
     Enum difficulty;
+
     int id;
     static int counter = 1;
     enum Difficulty{
@@ -25,6 +27,7 @@ public class Lore {
 
     public Lore(Difficulty difficulty){
         this.difficulty = difficulty;
+        this.name = difficulty.toString() + "_LORE";
         creaturesLoreArray = new ArrayList<>();
         weaponsLoreArray = new ArrayList<>();
         eventArrayList = new ArrayList<>();

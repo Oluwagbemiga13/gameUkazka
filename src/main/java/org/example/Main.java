@@ -8,8 +8,7 @@ import java.util.Random;
 
 import static org.example.Creature.fight;
 import static org.example.GameGenerator.*;
-import static org.example.SerTool.loadCreatureArrayList;
-import static org.example.SerTool.saveEverything;
+import static org.example.SerTool.*;
 
 public class Main {
 
@@ -38,14 +37,26 @@ public class Main {
 
         Lore testLore = new Lore(Lore.Difficulty.MODERATE);
 
-        //Test game
-        for(Event event : testLore.eventArrayList){
+        SerTool.saveLore(testLore);
+        Lore testLoreLoad = SerTool.loadLore("MODERATE_LORE.ser");
+
+        for(Event event : testLoreLoad.eventArrayList){
             event.consumeEvent();
             currentPlayer.printStats();
             if(currentPlayer.hP < 60){
                 currentPlayer.heal();
             }
         }
+
+
+        //Test game
+//        for(Event event : testLore.eventArrayList){
+//            event.consumeEvent();
+//            currentPlayer.printStats();
+//            if(currentPlayer.hP < 60){
+//                currentPlayer.heal();
+//            }
+//        }
 
 
 
