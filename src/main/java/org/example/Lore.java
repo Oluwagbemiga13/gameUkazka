@@ -12,9 +12,9 @@ public class Lore {
     public ArrayList <Event> eventArrayList;
 
     public void goThroughLore(Creature player){
-        for(int i = 1; i < this.eventArrayList.size(); i++){
+        for(int i = 0; i < this.eventArrayList.size(); i++){
             Event event = this.eventArrayList.get(i);
-            if (event.type.equals("fight")){
+            if (event.type.contains("FIGHT")){
                 while (!player.isDead && !event.creature.isDead){
                     fight(player, event.creature);
                 }
@@ -34,16 +34,14 @@ public class Lore {
         ArrayList <Event> tempA = new ArrayList<>();
         ArrayList <Event> tempB = new ArrayList<>();
 
-        for (int i = 0; i < (creatureArrayList.size()-1); i++){
-            tempA.add(new Event(Event.TypeOfEvent.FIGHT, Event.Difficulty.LOW));
+        for (int i = 0; i < 5; i++){
+            eventArrayList.add(new Event(Event.TypeOfEvent.FIGHT, Event.Difficulty.LOW));
         }
         for (int i = 0; i < 5; i++){
-            tempB.add(new Event(Event.TypeOfEvent.REST, Event.Difficulty.HIGH));
+            eventArrayList.add(new Event(Event.TypeOfEvent.FIGHT, Event.Difficulty.MEDIUM));
         }
-        int counter = 0;
-        for(int i = 0; i < tempA.size()-1; i++){
-            eventArrayList.add(tempA.get(i));
-            //eventArrayList.add(tempB.get(i));
+        for (int i = 0; i < 5; i++){
+            eventArrayList.add(new Event(Event.TypeOfEvent.REST, Event.Difficulty.HIGH));
         }
     }
 }

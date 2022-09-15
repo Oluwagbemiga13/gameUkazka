@@ -38,7 +38,7 @@ public class Event {
     }
 
     public Event(TypeOfEvent t, Difficulty d){
-        this.type = t.toString() + d.toString();
+        this.type = t.toString() +"_" +  d.toString();
         if(t.equals(TypeOfEvent.FIGHT)){
             switch (d) {
                 case LOW:
