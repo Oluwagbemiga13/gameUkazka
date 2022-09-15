@@ -2,7 +2,9 @@ package org.example;
 
 import java.util.ArrayList;
 
+import static org.example.Creature.fight;
 import static org.example.GameGenerator.*;
+import static org.example.Main.input;
 
 public class Event {
     String type;
@@ -10,6 +12,9 @@ public class Event {
     Creature creature;
     Item item;
     String message;
+
+    TypeOfEvent typeOfEventVar;
+    Difficulty difficultyVar;
 
     enum Difficulty{
         LOW,
@@ -39,6 +44,8 @@ public class Event {
 
     public Event(TypeOfEvent t, Difficulty d){
         this.type = t.toString() +"_" +  d.toString();
+        this.typeOfEventVar = t;
+        this.difficultyVar = d;
         if(t.equals(TypeOfEvent.FIGHT)){
             switch (d) {
                 case LOW:
@@ -82,6 +89,18 @@ public class Event {
         if (type.equals("item")) {
             item = new Item("ITEM");
             this.message = "ITEM: ...";
+        }
+    }
+
+    public void consumeEvent(){
+        System.out.println(message);
+
+        if(typeOfEventVar.equals(TypeOfEvent.FIGHT)){
+            if(input.returnDoIt()) {
+                while (!currentPlayer.isDead && !creature.isDead) {
+                    fight(currentPlayer, creature);
+                }
+            }
         }
     }
 }

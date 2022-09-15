@@ -67,10 +67,6 @@ public class GameGenerator {
         return player;
     }
 
-    public static void setPlayer(){
-        currentPlayer = getAlivePlayer(creatureArrayList);
-        System.out.println("Current player: " + currentPlayer.name);
-    }
 
 
     public void fillGameWithCreatures(ArrayList<Creature> createdCreatures){

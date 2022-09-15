@@ -14,6 +14,7 @@ import static org.example.SerTool.saveEverything;
 public class Main {
 
     public static Random dice;
+    public static Input input;
 
 
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
@@ -21,22 +22,28 @@ public class Main {
         Random randomizer = new Random();
         dice = randomizer;
 
-        GameGenerator level1 = new GameGenerator("Level 1");
+      input = new Input();
 
 
-        //createNPCs(1);
-        currentPlayer = createPlayer("Daniel");
+        GameGenerator gameGenerator = new GameGenerator("Level 1");
 
-        saveEverything();
-        ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
+        currentPlayer = createPlayer(input.returnString());
 
-        setPlayer();
+        //saveEverything();
+        //ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
+
         System.out.println("Current player: " + currentPlayer.name);
 
         Lore testLore = new Lore("TEST");
 
         //Test game
-        testLore.goThroughLore(currentPlayer);
+        //testLore.goThroughLore(currentPlayer);
+
+        for(Event event : testLore.eventArrayList){
+            event.consumeEvent();
+        }
+
+
 
         /*
         System.out.println("Pres any key and enter to exit program.");
