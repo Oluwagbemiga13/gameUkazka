@@ -24,7 +24,8 @@ public class Main {
         GameGenerator level1 = new GameGenerator("Level 1");
 
 
-        createNPCs(1);
+        //createNPCs(1);
+        currentPlayer = createPlayer("Daniel");
 
         saveEverything();
         ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");

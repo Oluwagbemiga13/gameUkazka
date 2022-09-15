@@ -87,8 +87,10 @@ public class GameGenerator {
     }
 
     public static void fillNPCsLootInventory(ArrayList<Creature> inputCreatureArrayList){
-        for(Creature creature : inputCreatureArrayList){
+       /* for(Creature creature : inputCreatureArrayList){
             creature.fillNPCInventory();
         }
+
+        */
     }
 }

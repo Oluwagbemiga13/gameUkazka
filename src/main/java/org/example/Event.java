@@ -12,6 +12,17 @@ public class Event {
 
     String message;
 
+    enum difficulty{
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+    enum type{
+        FIGHT,
+        REST,
+        FIND
+    }
+
     public static Creature returnFirstAlive(ArrayList<Creature> creatures){
         Creature creature = null;
         for (int i = 0; i < creatureArrayList.size(); i++) {
@@ -24,7 +35,7 @@ public class Event {
         return creature;
     }
 
-    public Event(String type){
+    public Event(type, difficulty){
         this.type = type;
         if (type.equals("fight")){
             creature = returnFirstAlive(creatureArrayList);
