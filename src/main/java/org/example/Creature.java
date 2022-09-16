@@ -71,36 +71,38 @@ public class Creature  implements Serializable {
     }
 
 
-    public static void fight(Creature attacker, Creature defender){
+    public static String fight(Creature attacker, Creature defender){
+        String message = "";
 
         if (attacker.isDead || defender.isDead){
-            System.out.println("Unable to fight. - Someone is dead");
+            message = "Unable to fight. - Someone is dead";
         }
         else{
             if(attacker.equipedWeapon != null){
                 int attackPointsTotal = attacker.attackPoints + attacker.equipedWeapon.extraAttackPoints;
                 defender.hP = defender.hP - attackPointsTotal;
-                System.out.println("\n" + attacker.name + " attacked " + defender.name + " with " + attacker.equipedWeapon.nameOfWeapon
-                        + " and dealt " +  attackPointsTotal + " DMG.");
+                message = "\n" + attacker.name + " attacked " + defender.name + " with " + attacker.equipedWeapon.nameOfWeapon
+                        + " and dealt " +  attackPointsTotal + " DMG.";
             }
             else{
                 defender.hP = defender.hP - attacker.attackPoints;
-                System.out.println(attacker.name + " attacked " + defender.name
-                        + " with bare hands and dealt " +  attacker.attackPoints + " DMG.");
+                message = attacker.name + " attacked " + defender.name
+                        + " with bare hands and dealt " +  attacker.attackPoints + " DMG.";
             }
             if(defender.hP < 1){
                 defender.isDead = true;
-                System.out.println(defender.name + " died.\n");
+                message = message.concat("\n"+ defender.name + " died.");
                 pickUpItems(attacker,defender);
                 defender.die();
             }
             else {
-                counterAtack(attacker,defender);
-                attacker.printStats();
-                defender.printStats();
+                message = message.concat(counterAtack(attacker,defender));
+//                attacker.printStats();
+//                defender.printStats();
             }
 
         }
+        return message;
     }
 
 
@@ -108,15 +110,17 @@ public class Creature  implements Serializable {
         System.out.println(this.name + " " + this.attackPoints + "/" + this.hP);
     }
 
-    public static void counterAtack(Creature getDamage, Creature dealDamage){
+    public static String counterAtack(Creature getDamage, Creature dealDamage){
+        String message = "";
         if(!dealDamage.isDead) {
             int counterAtack = (int) round(dice.nextDouble() * dealDamage.attackPoints);
             getDamage.hP = getDamage.hP - counterAtack;
             if(getDamage.hP <1) {
                 getDamage.isDead = true;
             }
-            System.out.println("\n" + dealDamage.name + " counter atacked and dealt " + counterAtack + " damage");
+            message = "\n" + dealDamage.name + " counter atacked and dealt " + counterAtack + " damage";
         }
+        return message;
     }
 
     public static void pickUpItems(Creature player, Creature nPC){

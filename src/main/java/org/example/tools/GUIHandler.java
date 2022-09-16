@@ -37,7 +37,7 @@ public class GUIHandler {
     public void createPlayFrame(){
         PlayFrame playFrame = new PlayFrame();
         playFrame.setVisible(true);
-        playFrame.updateFrame();
+        playFrame.setFrameFightDecision();
     }
     
 }

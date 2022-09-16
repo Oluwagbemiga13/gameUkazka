@@ -6,9 +6,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui;
 
-import org.example.Event;
-import org.example.Lore;
-
+import static org.example.Creature.fight;
 import static org.example.Main.currentEvent;
 import static org.example.tools.GameGenerator.currentPlayer;
 
@@ -20,35 +18,56 @@ public class PlayFrame extends javax.swing.JFrame {
 
     static String currentMessage;
 
-    public void updateFrame(){
-        if(currentMessage != null){
-            currentMessage = currentEvent.message;
-        }
+    public void setFrameFightDecision(){
+        currentMessage = currentEvent.message;
+
         messageTextArea.setText(currentMessage);
         String type = currentEvent.typeOfEventVar.toString();
         if(currentEvent.typeOfEventVar.toString().equals("FIGHT")){
-            healthNPCLabel.setVisible(true);
-            healthNPCLabel1.setVisible(true);
-            healthNPCLabel1.setText(String.valueOf(currentEvent.creature.hP));
-            nameNPCLabel1.setText(currentEvent.creature.name);
-            nameNPCLabel1.setVisible(true);
 
-
-            healthLabel1.setText(String.valueOf(currentPlayer.hP));
-            if(currentPlayer.equipedWeapon != null){
-            weaponLabel1.setText(currentPlayer.equipedWeapon.name + " +"
-                    + currentPlayer.equipedWeapon.extraAttackPoints + " DMG");
-            }
-            else{
-                weaponLabel1.setText("NONE");
-            }
-            nameLabel1.setText(currentPlayer.name);
+            updateStats();
 
             yesButton.setVisible(true);
             noButton.setVisible(true);
 
             attackButton.setVisible(false);
             runButton.setVisible(false);
+            leftButton.setVisible(false);;
+            rightButton.setVisible(false);
+
+        }
+    }
+
+    public void updateStats(){
+        healthNPCLabel.setVisible(true);
+        healthNPCLabel1.setVisible(true);
+        healthNPCLabel1.setText(String.valueOf(currentEvent.creature.hP));
+        nameNPCLabel1.setText(currentEvent.creature.name);
+        nameNPCLabel1.setVisible(true);
+
+
+        healthLabel1.setText(String.valueOf(currentPlayer.hP));
+        if(currentPlayer.equipedWeapon != null){
+            weaponLabel1.setText(currentPlayer.equipedWeapon.name + " +"
+                    + currentPlayer.equipedWeapon.extraAttackPoints + " DMG");
+        }
+        else{
+            weaponLabel1.setText("NONE");
+        }
+        nameLabel1.setText(currentPlayer.name);
+    }
+    public void setFrameFight(){
+
+        messageTextArea.setText(fight(currentPlayer,currentEvent.creature));
+        String type = currentEvent.typeOfEventVar.toString();
+        if(currentEvent.typeOfEventVar.toString().equals("FIGHT")){
+            updateStats();
+
+            yesButton.setVisible(false);
+            noButton.setVisible(false);
+
+            attackButton.setVisible(true);
+            runButton.setVisible(true);
             leftButton.setVisible(false);;
             rightButton.setVisible(false);
 
@@ -277,6 +296,7 @@ public class PlayFrame extends javax.swing.JFrame {
 
     private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
         // TODO add your handling code here:
+        setFrameFight();
     }//GEN-LAST:event_yesButtonActionPerformed
 
     private void noButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noButtonActionPerformed
@@ -285,6 +305,8 @@ public class PlayFrame extends javax.swing.JFrame {
 
     private void attackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButtonActionPerformed
         // TODO add your handling code here:
+        messageTextArea.setText(fight(currentPlayer,currentEvent.creature));
+        updateStats();
     }//GEN-LAST:event_attackButtonActionPerformed
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
