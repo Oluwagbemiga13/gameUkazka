@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.GUI.GUIHandler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,18 +11,26 @@ import static org.example.Creature.fight;
 import static org.example.GameGenerator.*;
 import static org.example.SerTool.*;
 
+
 public class Main {
 
     public static Random dice;
     public static Input input;
+    public static GUIHandler guiHandler;
+    public static Lore currentLore;
+
+    public static Event currentEvent;
 
 
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
 
         Random randomizer = new Random();
         dice = randomizer;
+        guiHandler = new GUIHandler();
 
       input = new Input();
+      
+      guiHandler.createFirstFrame();
 
 
         GameGenerator gameGenerator = new GameGenerator("Level 1");
@@ -30,6 +39,7 @@ public class Main {
 
         currentPlayer = createPlayer("Dan");
 
+
         //saveEverything();
         //ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
 
@@ -37,7 +47,7 @@ public class Main {
 
         Lore testLore = new Lore(Lore.Difficulty.MODERATE);
 
-        SerTool.saveLore(testLore);
+        //SerTool.saveLore(testLore);
         Lore testLoreLoad = SerTool.loadLore("MODERATE_LORE.ser");
 
         for(Event event : testLoreLoad.eventArrayList){

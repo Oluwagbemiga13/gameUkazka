@@ -10,6 +10,7 @@ public class GameGenerator {
     public static ArrayList<Creature> creatureArrayList;
     public static ArrayList<Item> itemArrayList;
 
+
     public static Creature createPlayer(String name){
         return new Player(name, 100, 5);
     }

@@ -14,7 +14,7 @@ public class Lore implements Serializable {
 
     int id;
     static int counter = 1;
-    enum Difficulty{
+    public enum Difficulty{
         EASY,
         MODERATE,
         HARD
