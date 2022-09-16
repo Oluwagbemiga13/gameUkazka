@@ -4,22 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import static java.lang.Math.round;
-import static org.example.Creature.fight;
-import static org.example.GameGenerator.creatureArrayList;
 import static org.example.Main.dice;
 
 
 public class Lore implements Serializable {
-    Enum difficulty;
+    public Enum difficulty;
 
-    int id;
-    static int counter = 1;
+    public int id;
+    public static int counter = 1;
     public enum Difficulty{
         EASY,
         MODERATE,
         HARD
     }
-    String name;
+    public String name;
     public ArrayList <Creature> creaturesLoreArray;
     public ArrayList <Weapon> weaponsLoreArray;
     public ArrayList <Event> eventArrayList;

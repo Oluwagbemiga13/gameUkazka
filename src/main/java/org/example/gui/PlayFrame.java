@@ -4,13 +4,56 @@ $RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
 $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.example.GUI;
+package org.example.gui;
+
+import org.example.Event;
+import org.example.Lore;
+
+import static org.example.Main.currentEvent;
+import static org.example.tools.GameGenerator.currentPlayer;
 
 /**
  *
  * @author Daniel
  */
 public class PlayFrame extends javax.swing.JFrame {
+
+    static String currentMessage;
+
+    public void updateFrame(){
+        if(currentMessage != null){
+            currentMessage = currentEvent.message;
+        }
+        messageTextArea.setText(currentMessage);
+        String type = currentEvent.typeOfEventVar.toString();
+        if(currentEvent.typeOfEventVar.toString().equals("FIGHT")){
+            healthNPCLabel.setVisible(true);
+            healthNPCLabel1.setVisible(true);
+            healthNPCLabel1.setText(String.valueOf(currentEvent.creature.hP));
+            nameNPCLabel1.setText(currentEvent.creature.name);
+            nameNPCLabel1.setVisible(true);
+
+
+            healthLabel1.setText(String.valueOf(currentPlayer.hP));
+            if(currentPlayer.equipedWeapon != null){
+            weaponLabel1.setText(currentPlayer.equipedWeapon.name + " +"
+                    + currentPlayer.equipedWeapon.extraAttackPoints + " DMG");
+            }
+            else{
+                weaponLabel1.setText("NONE");
+            }
+            nameLabel1.setText(currentPlayer.name);
+
+            yesButton.setVisible(true);
+            noButton.setVisible(true);
+
+            attackButton.setVisible(false);
+            runButton.setVisible(false);
+            leftButton.setVisible(false);;
+            rightButton.setVisible(false);
+
+        }
+    }
 
     /**
      * Creates new form PlayFrame
@@ -295,15 +338,15 @@ public class PlayFrame extends javax.swing.JFrame {
     private javax.swing.JButton attackButton;
     private javax.swing.JLabel healthLabel;
     private javax.swing.JLabel healthLabel1;
-    private javax.swing.JLabel healthNPCLabel;
-    private javax.swing.JLabel healthNPCLabel1;
+    private static javax.swing.JLabel healthNPCLabel;
+    private static javax.swing.JLabel healthNPCLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton leftButton;
-    private javax.swing.JTextArea messageTextArea;
+    private static javax.swing.JTextArea messageTextArea;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nameLabel1;
     private javax.swing.JLabel nameNPCLabel;
-    private javax.swing.JLabel nameNPCLabel1;
+    private static javax.swing.JLabel nameNPCLabel1;
     private javax.swing.JButton noButton;
     private javax.swing.JButton rightButton;
     private javax.swing.JButton runButton;

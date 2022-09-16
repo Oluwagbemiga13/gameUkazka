@@ -1,4 +1,9 @@
-package org.example;
+package org.example.tools;
+
+import org.example.Creature;
+import org.example.Item;
+import org.example.NPC;
+import org.example.Player;
 
 import java.util.ArrayList;
 

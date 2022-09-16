@@ -1,9 +1,12 @@
-package org.example;
+package org.example.tools;
+
+import org.example.Creature;
+import org.example.Lore;
 
 import java.io.*;
 import java.util.ArrayList;
 
-import static org.example.GameGenerator.creatureArrayList;
+import static org.example.tools.GameGenerator.creatureArrayList;
 
 public class SerTool {
 

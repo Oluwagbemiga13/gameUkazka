@@ -4,15 +4,15 @@ $RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
 $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.example.GUI;
+package org.example.gui;
 
 import org.example.*;
-import org.example.GameGenerator.*;
-import static org.example.GameGenerator.currentPlayer;
 
-import static org.example.GameGenerator.createPlayer;
+import static org.example.tools.GameGenerator.currentPlayer;
+
+import static org.example.tools.GameGenerator.createPlayer;
 import static org.example.Main.*;
-import static org.example.Validator.isValidName;
+import static org.example.tools.Validator.isValidName;
 
 /**
  *

@@ -5,23 +5,23 @@ import java.util.ArrayList;
 
 import static java.lang.Math.round;
 import static java.text.ChoiceFormat.nextDouble;
-import static org.example.GameGenerator.creatureArrayList;
+import static org.example.tools.GameGenerator.creatureArrayList;
 import static org.example.Main.dice;
 
 public class Creature  implements Serializable {
 
-    String name;
-    int hP;
-    int attackPoints;
-    boolean isDead;
-    int positionArrayList;
+    public String name;
+    public int hP;
+    public int attackPoints;
+    public boolean isDead;
+    public int positionArrayList;
 
-    Weapon equipedWeapon = null;
+    public Weapon equipedWeapon = null;
 
     public static String nameOfPlayer = "Daniel";
 
     public static int counterOfNPCCreated = 0;
-    ArrayList<Weapon> weaponInventory;
+    public ArrayList<Weapon> weaponInventory;
 
     ArrayList<Item> lootInventory;
 

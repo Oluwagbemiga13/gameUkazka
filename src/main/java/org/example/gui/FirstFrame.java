@@ -4,16 +4,11 @@ $RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
 $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.example.GUI;
+package org.example.gui;
 
 import static org.example.Main.guiHandler;
-import java.awt.image.BufferedImage;
+
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *

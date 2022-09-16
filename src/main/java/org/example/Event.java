@@ -4,29 +4,29 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import static org.example.Creature.fight;
-import static org.example.GameGenerator.*;
+import static org.example.tools.GameGenerator.*;
 import static org.example.Main.input;
 
 public class Event implements Serializable {
     String type;
-    int positionInLoreArray;
-    Creature creature;
-    Item item;
-    String message;
+    public int positionInLoreArray;
+    public Creature creature;
+    public Item item;
+    public String message;
 
-    int plusHP = 0;
-    int minusHP = 0;
+    public int plusHP = 0;
+    public int minusHP = 0;
 
-    TypeOfEvent typeOfEventVar;
-    Difficulty difficultyVar;
+    public TypeOfEvent typeOfEventVar;
+    public Difficulty difficultyVar;
 
-    enum Difficulty{
+    public enum Difficulty{
         LOW,
         MEDIUM,
         HIGH,
         NONE
     }
-    enum TypeOfEvent {
+    public enum TypeOfEvent {
         FIGHT,
         REST,
         FIND

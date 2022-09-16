@@ -7,9 +7,9 @@ import static org.example.Main.dice;
 
 public class Weapon extends Item implements Serializable {
 
-    String name;
-    int extraAttackPoints;
-    String nameOfWeapon;
+    public String name;
+    public int extraAttackPoints;
+    public String nameOfWeapon;
 
     /***
      *

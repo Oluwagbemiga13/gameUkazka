@@ -1,15 +1,14 @@
 package org.example;
 
-import org.example.GUI.GUIHandler;
-import java.io.BufferedReader;
+import org.example.tools.GUIHandler;
+import org.example.tools.GameGenerator;
+import org.example.tools.Input;
+import org.example.tools.SerTool;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Random;
 
-import static org.example.Creature.fight;
-import static org.example.GameGenerator.*;
-import static org.example.SerTool.*;
+import static org.example.tools.GameGenerator.*;
 
 
 public class Main {
@@ -18,7 +17,6 @@ public class Main {
     public static Input input;
     public static GUIHandler guiHandler;
     public static Lore currentLore;
-
     public static Event currentEvent;
 
 

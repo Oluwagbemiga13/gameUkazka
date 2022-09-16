@@ -4,9 +4,13 @@ $RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
 $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.example.GUI;
+package org.example.tools;
 
 
+import org.example.gui.FirstFrame;
+import org.example.gui.LoadGameFrame;
+import org.example.gui.NewGameFrame;
+import org.example.gui.PlayFrame;
 
 /**
  *
@@ -33,6 +37,7 @@ public class GUIHandler {
     public void createPlayFrame(){
         PlayFrame playFrame = new PlayFrame();
         playFrame.setVisible(true);
+        playFrame.updateFrame();
     }
     
 }
