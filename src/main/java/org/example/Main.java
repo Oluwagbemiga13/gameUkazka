@@ -45,11 +45,11 @@ public class Main {
 
         Lore testLore = new Lore(Lore.Difficulty.MODERATE);
 
-        //SerTool.saveLore(testLore);
+        SerTool.saveLore(testLore);
         Lore testLoreLoad = SerTool.loadLore("MODERATE_LORE.ser");
 
         for(Event event : testLoreLoad.eventArrayList){
-            event.consumeEvent();
+            //event.consumeEvent();
             currentPlayer.printStats();
             if(currentPlayer.hP < 60){
                 currentPlayer.heal();

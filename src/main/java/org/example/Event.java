@@ -14,6 +14,8 @@ public class Event implements Serializable {
     public Item item;
     public String message;
 
+    static int counterOfCreated = 0;
+
     public int plusHP = 0;
     public int minusHP = 0;
 
@@ -74,7 +76,7 @@ public class Event implements Serializable {
                     message = "Nothing interesting happened.";
                     break;
                 case MEDIUM:
-                    message = "You rested little bit + 5HP \n IMPLEMENT DMG!";
+                    message = "You rested little bit + 5HP ";
                     plusHP= 5;
                     break;
                 case HIGH:
@@ -84,6 +86,8 @@ public class Event implements Serializable {
             }
 
         }
+        positionInLoreArray = counterOfCreated;
+        counterOfCreated++;
     }
 
     public void consumeEvent(){

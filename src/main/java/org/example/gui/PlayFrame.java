@@ -6,8 +6,12 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui;
 
+import org.example.Event;
+
 import static org.example.Creature.fight;
+import static org.example.Creature.pickUpItems;
 import static org.example.Main.currentEvent;
+import static org.example.Main.currentLore;
 import static org.example.tools.GameGenerator.currentPlayer;
 
 /**
@@ -48,7 +52,7 @@ public class PlayFrame extends javax.swing.JFrame {
 
         healthLabel1.setText(String.valueOf(currentPlayer.hP));
         if(currentPlayer.equipedWeapon != null){
-            weaponLabel1.setText(currentPlayer.equipedWeapon.name + " +"
+            weaponLabel1.setText(currentPlayer.equipedWeapon.nameOfWeapon + " +"
                     + currentPlayer.equipedWeapon.extraAttackPoints + " DMG");
         }
         else{
@@ -73,6 +77,39 @@ public class PlayFrame extends javax.swing.JFrame {
 
         }
     }
+    public void setFrameGoSomewhere(){
+
+
+        messageTextArea.setText(messageTextArea.getText().concat("\n Where do you want to go next?"));
+
+            yesButton.setVisible(false);
+            noButton.setVisible(false);
+
+            attackButton.setVisible(false);
+            runButton.setVisible(false);
+            leftButton.setVisible(true);;
+            rightButton.setVisible(true);
+
+
+    }
+
+    public void updateMessage(){
+        currentMessage = currentEvent.message;
+        messageTextArea.setText(currentMessage);
+    }
+
+    public void checkAndSetFrame(Event event){
+        if(event.typeOfEventVar.equals(Event.TypeOfEvent.FIGHT)){
+            setFrameFightDecision();
+        }
+        if(event.typeOfEventVar.equals(Event.TypeOfEvent.REST)){
+            setFrameGoSomewhere();
+        }
+        if(event.typeOfEventVar.equals(Event.TypeOfEvent.FIND)){
+            System.out.println("NEED TO IMPLEMENT");
+        }
+    }
+
 
     /**
      * Creates new form PlayFrame
@@ -307,6 +344,10 @@ public class PlayFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         messageTextArea.setText(fight(currentPlayer,currentEvent.creature));
         updateStats();
+        if(currentEvent.creature.isDead){
+            messageTextArea.setText(messageTextArea.getText().concat("\n" + pickUpItems(currentPlayer,currentEvent.creature)));
+            setFrameGoSomewhere();
+        }
     }//GEN-LAST:event_attackButtonActionPerformed
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
@@ -315,10 +356,33 @@ public class PlayFrame extends javax.swing.JFrame {
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
         // TODO add your handling code here:
+        int currentIndexOfEvent = currentLore.eventArrayList.indexOf(currentEvent);
+        if(currentIndexOfEvent == 0){
+            currentEvent = currentLore.eventArrayList.get((currentLore.eventArrayList.size()-1));
+        }
+        else {
+            currentEvent = currentLore.eventArrayList.get(currentIndexOfEvent - 1);
+        }
+        checkAndSetFrame(currentEvent);
+        updateMessage();
+
+        System.out.println("Current index:" + currentLore.eventArrayList.indexOf(currentEvent));
     }//GEN-LAST:event_leftButtonActionPerformed
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
         // TODO add your handling code here:
+        int currentIndexOfEvent = currentLore.eventArrayList.indexOf(currentEvent);
+
+        if(currentIndexOfEvent < currentLore.eventArrayList.size() - 1){
+            currentEvent = currentLore.eventArrayList.get(currentIndexOfEvent + 1);
+        }
+        else {
+            currentEvent = currentLore.eventArrayList.get(0);
+        }
+        checkAndSetFrame(currentEvent);
+
+        updateMessage();
+        System.out.println("Current index:" + currentLore.eventArrayList.indexOf(currentEvent));
     }//GEN-LAST:event_rightButtonActionPerformed
 
     /**

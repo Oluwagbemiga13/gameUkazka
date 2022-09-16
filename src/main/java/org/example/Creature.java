@@ -92,7 +92,6 @@ public class Creature  implements Serializable {
             if(defender.hP < 1){
                 defender.isDead = true;
                 message = message.concat("\n"+ defender.name + " died.");
-                pickUpItems(attacker,defender);
                 defender.die();
             }
             else {
@@ -123,24 +122,25 @@ public class Creature  implements Serializable {
         return message;
     }
 
-    public static void pickUpItems(Creature player, Creature nPC){
+    public static String pickUpItems(Creature player, Creature nPC){
+        String message = "";
         if(!nPC.lootInventory.isEmpty()) {
             for(Item item : nPC.lootInventory) {
                 if (item.getClass().toString().equals("class org.example.Weapon")) {
                     player.weaponInventory.add((Weapon) item);
-                    //System.out.println(item.getClass().toString());
-                    System.out.println(player.name + " picked up " + ((Weapon) item).nameOfWeapon + " +" + ((Weapon) item).extraAttackPoints + " DMG.");
+                    message = message.concat( "\n"+ player.name + " picked up " + ((Weapon) item).nameOfWeapon + " +" + ((Weapon) item).extraAttackPoints + " DMG.");
                 }
                 else {
                     player.itemInventory.add(item);
-                    System.out.println(player.name + " picked up " + item.name + " +" + item.healingPoints + " healing points.");
+                    message = message.concat("\n" + player.name + " picked up " + item.name + " +" + item.healingPoints + " healing points.");
                 }
             }
         }
         else{
-            System.out.println("There is no weapon to loot.");
+            message = "There was nothing to loot.";
         }
         player.equipBestWeapon();
+        return message;
     }
 
     public void heal(){

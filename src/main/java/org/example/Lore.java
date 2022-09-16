@@ -66,5 +66,12 @@ public class Lore implements Serializable {
                 }
             }
         }
+        for(Event e : this.eventArrayList){
+            String type = e.typeOfEventVar.toString();
+            System.out.println(type + " " + e.positionInLoreArray);
+            if (e.creature !=null){
+                System.out.println(" " + e.creature.name );
+            }
+        }
     }
 }
