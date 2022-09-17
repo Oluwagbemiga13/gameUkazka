@@ -6,6 +6,9 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.example.Event;
 
 import static org.example.Creature.fight;
@@ -13,6 +16,7 @@ import static org.example.Creature.pickUpItems;
 import static org.example.Main.currentEvent;
 import static org.example.Main.currentLore;
 import static org.example.tools.GameGenerator.currentPlayer;
+import static org.example.tools.SerTool.saveLore;
 
 /**
  *
@@ -145,6 +149,7 @@ public class PlayFrame extends javax.swing.JFrame {
         runButton = new javax.swing.JButton();
         leftButton = new javax.swing.JButton();
         rightButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -233,6 +238,14 @@ public class PlayFrame extends javax.swing.JFrame {
             }
         });
 
+        saveButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        saveButton.setText("SAVE");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -270,10 +283,12 @@ public class PlayFrame extends javax.swing.JFrame {
                     .addComponent(healthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(healthLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(weaponLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(healthLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(weaponLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
@@ -297,6 +312,8 @@ public class PlayFrame extends javax.swing.JFrame {
                                 .addComponent(healthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(weaponLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,6 +402,15 @@ public class PlayFrame extends javax.swing.JFrame {
         System.out.println("Current index:" + currentLore.eventArrayList.indexOf(currentEvent));
     }//GEN-LAST:event_rightButtonActionPerformed
 
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            saveLore(currentLore);
+        } catch (IOException ex) {
+            Logger.getLogger(PlayFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,18 +450,19 @@ public class PlayFrame extends javax.swing.JFrame {
     private javax.swing.JButton attackButton;
     private javax.swing.JLabel healthLabel;
     private javax.swing.JLabel healthLabel1;
-    private static javax.swing.JLabel healthNPCLabel;
-    private static javax.swing.JLabel healthNPCLabel1;
+    private javax.swing.JLabel healthNPCLabel;
+    private javax.swing.JLabel healthNPCLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton leftButton;
-    private static javax.swing.JTextArea messageTextArea;
+    private javax.swing.JTextArea messageTextArea;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nameLabel1;
     private javax.swing.JLabel nameNPCLabel;
-    private static javax.swing.JLabel nameNPCLabel1;
+    private javax.swing.JLabel nameNPCLabel1;
     private javax.swing.JButton noButton;
     private javax.swing.JButton rightButton;
     private javax.swing.JButton runButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JLabel weaponLabel;
     private javax.swing.JLabel weaponLabel1;
     private javax.swing.JButton yesButton;
