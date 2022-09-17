@@ -6,9 +6,11 @@ import org.example.tools.Input;
 import org.example.tools.SerTool;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.example.tools.GameGenerator.*;
+import static org.example.tools.SerTool.*;
 
 
 public class Main {
@@ -30,6 +32,10 @@ public class Main {
       
       guiHandler.createFirstFrame();
 
+      for(String s : guiHandler.getFilesNames()){
+          System.out.println(s);
+      }
+
 
         GameGenerator gameGenerator = new GameGenerator("Level 1");
 
@@ -38,23 +44,25 @@ public class Main {
         currentPlayer = createPlayer("Dan");
 
 
-        //saveEverything();
+        saveEverything();
         //ArrayList<Creature> testCreature = loadCreatureArrayList("CreatureArrayList.ser");
 
         System.out.println("Current player: " + currentPlayer.name);
 
         Lore testLore = new Lore(Lore.Difficulty.MODERATE);
 
-        SerTool.saveLore(testLore);
-        Lore testLoreLoad = SerTool.loadLore("MODERATE_LORE.ser");
+        saveLore(testLore);
 
-        for(Event event : testLoreLoad.eventArrayList){
-            //event.consumeEvent();
-            currentPlayer.printStats();
-            if(currentPlayer.hP < 60){
-                currentPlayer.heal();
-            }
-        }
+        //SerTool.saveLore(testLore);
+        //Lore testLoreLoad = SerTool.loadLore("MODERATE_LORE.ser");
+
+//        for(Event event : testLoreLoad.eventArrayList){
+//            //event.consumeEvent();
+//            currentPlayer.printStats();
+//            if(currentPlayer.hP < 60){
+//                currentPlayer.heal();
+//            }
+//        }
 
 
         //Test game

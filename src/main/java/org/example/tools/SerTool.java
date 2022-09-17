@@ -7,6 +7,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static org.example.tools.GameGenerator.creatureArrayList;
+import static org.example.tools.GameGenerator.currentPlayer;
+import static org.example.tools.PersistentInfo.persistentInfoSavedGames;
 
 public class SerTool {
 
@@ -36,7 +38,7 @@ public class SerTool {
     }
 
     public static void saveCreatureArrayList(ArrayList<Creature> arrayList) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("CreatureArrayList.ser");
+        FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\danie\\Documents\\NetBeansProjects\\gameUkazka\\src\\main\\java\\org\\example\\savedGames\\CreatureArrayList.ser");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
         objectOutputStream.writeObject(arrayList);
@@ -62,13 +64,16 @@ public class SerTool {
         saveCreatureArrayList(creatureArrayList);
     }
     public static void saveLore(Lore lore) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(lore.name +".ser");
+        FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\danie\\Documents\\NetBeansProjects\\gameUkazka\\src\\main\\" +
+                "java\\org\\example\\savedGames\\" + currentPlayer.name + "_SAVED_GAME" + ".ser");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
         objectOutputStream.writeObject(lore);
 
         objectOutputStream.close();
         fileOutputStream.close();
+
+        persistentInfoSavedGames++;
     }
 
     public static Lore loadLore(String nameOfFile) throws IOException, ClassNotFoundException {
@@ -76,6 +81,25 @@ public class SerTool {
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
         return (Lore) objectInputStream.readObject();
+    }
+
+    public static void saveInfo() throws IOException {
+        PersistentInfo info = new PersistentInfo(persistentInfoSavedGames);
+        FileOutputStream fileOutputStream = new FileOutputStream( "PersistentInfo.ser");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+        objectOutputStream.writeObject(info);
+
+        objectOutputStream.close();
+        fileOutputStream.close();
+    }
+
+    public static PersistentInfo loadInfo() throws IOException, ClassNotFoundException {
+        String nameOfFile = "PersistentInfo.ser";
+        FileInputStream fileInputStream = new FileInputStream(nameOfFile);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+        return (PersistentInfo) objectInputStream.readObject();
     }
 
 }

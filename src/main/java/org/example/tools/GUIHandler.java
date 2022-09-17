@@ -12,6 +12,11 @@ import org.example.gui.LoadGameFrame;
 import org.example.gui.NewGameFrame;
 import org.example.gui.PlayFrame;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author Daniel
@@ -38,6 +43,22 @@ public class GUIHandler {
         PlayFrame playFrame = new PlayFrame();
         playFrame.setVisible(true);
         playFrame.setFrameFightDecision();
+    }
+
+    public String [] getFilesNames (){
+        // get all files in the folder excluding sub-folders
+        final File folder = new File("C:\\Users\\danie\\Documents\\NetBeansProjects\\gameUkazka\\src\\main\\" +
+                "java\\org\\example\\savedGames\\");
+        final List<File> fileList = Arrays.asList(folder.listFiles(new FileFilter() {
+            public boolean accept(File pathname) {
+                return pathname.isFile();
+            }
+        }));
+        String [] stringArray = new String[fileList.size()];
+        for(int i = 0; i < fileList.size(); i++){
+            stringArray [i] = fileList.get(i).getName();
+        }
+        return stringArray;
     }
     
 }
