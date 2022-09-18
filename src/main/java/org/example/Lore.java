@@ -36,7 +36,7 @@ public class Lore implements Serializable {
         if(difficulty.equals(Difficulty.EASY)) {
             for (int i = 0; i < 5; i++) {
                 eventArrayList.add(new Event(Event.TypeOfEvent.FIGHT, Event.Difficulty.LOW));
-                int random = (int) round(dice.nextDouble());
+                int random = (int) round(dice.nextDouble()*10);
                 if (random < 3) {
                     eventArrayList.add(new Event(Event.TypeOfEvent.REST, Event.Difficulty.MEDIUM));
                 } else {
@@ -46,7 +46,7 @@ public class Lore implements Serializable {
         }
         if (difficulty.equals(Difficulty.MODERATE)){
             for (int i = 0; i < 5; i++) {
-                int random1 = (int) round(dice.nextDouble());
+                int random1 = (int) round(dice.nextDouble()*10);
 
                 if(random1 <= 3){
                     eventArrayList.add(new Event(Event.TypeOfEvent.FIGHT, Event.Difficulty.MEDIUM));
@@ -55,7 +55,7 @@ public class Lore implements Serializable {
                     eventArrayList.add(new Event(Event.TypeOfEvent.FIGHT, Event.Difficulty.LOW));
                 }
 
-                int random = (int) round(dice.nextDouble());
+                int random = (int) round(dice.nextDouble()*10);
                 if(random <= 1){
                     eventArrayList.add(new Event(Event.TypeOfEvent.REST, Event.Difficulty.HIGH));
                 }
