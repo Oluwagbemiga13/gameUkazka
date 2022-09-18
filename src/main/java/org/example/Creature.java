@@ -54,7 +54,7 @@ public class Creature  implements Serializable {
 
     /***
      *
-     * @return best weapon form invenotry
+     * @return best weapon form inventory
      */
     public void equipBestWeapon(){
 
@@ -99,7 +99,6 @@ public class Creature  implements Serializable {
 //                attacker.printStats();
 //                defender.printStats();
             }
-
         }
         return message;
     }
