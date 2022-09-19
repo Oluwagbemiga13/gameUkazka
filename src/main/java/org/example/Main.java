@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.tools.GUIHandler;
-import org.example.tools.GameGenerator;
-import org.example.tools.Input;
-import org.example.tools.SerTool;
+import org.example.tools.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,9 +25,11 @@ public class Main {
         dice = randomizer;
         guiHandler = new GUIHandler();
 
-      input = new Input();
+        input = new Input();
       
-      guiHandler.createFirstFrame();
+        guiHandler.createFirstFrame();
+
+        CreativeLedger creativeLedger = new CreativeLedger();
 
       for(String s : guiHandler.getFilesNames()){
           System.out.println(s);

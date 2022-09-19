@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import static org.example.Creature.fight;
 import static org.example.Main.currentLore;
+import static org.example.tools.CreativeLedger.creativeEventArray;
 import static org.example.tools.GameGenerator.*;
 import static org.example.Main.input;
 
@@ -53,7 +54,6 @@ public class Event implements Serializable {
         return isAtBeginning;
     }
 
-
     public static Creature returnFirstAlive(ArrayList<Creature> creatures){
         Creature creature = null;
         for (int i = 0; i < creatureArrayList.size(); i++) {
@@ -66,6 +66,7 @@ public class Event implements Serializable {
         return creature;
     }
 
+    //CONSTRUCTOR AUTO
     public Event(TypeOfEvent t, Difficulty d){
         this.type = t.toString() +"_" +  d.toString();
         this.typeOfEventVar = t;
@@ -108,6 +109,21 @@ public class Event implements Serializable {
         }
         positionInLoreArray = counterOfCreated;
         counterOfCreated++;
+    }
+
+    //CONSTRUCTOR CREATIVE
+    public Event(String message, int plusHP, int minusHP){
+        this.message = message;
+        this.plusHP = plusHP;
+        this.minusHP = minusHP;
+        this.typeOfEventVar = TypeOfEvent.REST;
+        creativeEventArray.add(this);
+    }
+
+    public Event(Creature creature){
+        this.creature = creature;
+        this.typeOfEventVar = TypeOfEvent.FIGHT;
+        creativeEventArray.add(this);
     }
 
     public void consumeEvent(){

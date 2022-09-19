@@ -6,6 +6,10 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui;
 
+import org.example.Event;
+import org.example.tools.CreativeLedger;
+
+import static org.example.tools.CreativeConstructor.creativeEvent;
 import static org.example.tools.GUIHandler.savedFrame;
 
 /**
@@ -149,6 +153,18 @@ public class RestEventFrame extends javax.swing.JFrame {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
+        String message = messageTextArea.getText();
+        int plusHP = Integer.parseInt(plusHpField.getText());
+        int minusHP = Integer.parseInt(minusHpPoints.getText());
+
+        Event e = creativeEvent(message,plusHP,minusHP);
+        CreativeLedger.creativeEventArray.add(e);
+
+        this.dispose();
+        savedFrame.setVisible(true);
+
+        System.out.println("MESSAGE: " + e.message + "\n PLUS/MINUS" + e.plusHP + "/" + e.minusHP);
+
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
