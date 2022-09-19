@@ -4,7 +4,7 @@ $RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
 $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.example.gui;
+package org.example.gui.creative;
 
 import org.example.Event;
 import org.example.tools.CreativeLedger;
@@ -156,6 +156,7 @@ public class RestEventFrame extends javax.swing.JFrame {
         String message = messageTextArea.getText();
         int plusHP = Integer.parseInt(plusHpField.getText());
         int minusHP = Integer.parseInt(minusHpPoints.getText());
+
 
         Event e = creativeEvent(message,plusHP,minusHP);
         CreativeLedger.creativeEventArray.add(e);

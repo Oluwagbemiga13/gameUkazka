@@ -7,8 +7,11 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package org.example.tools;
 
 
-import org.example.Event;
-import org.example.gui.*;
+import org.example.gui.creative.*;
+import org.example.gui.standart.FirstFrame;
+import org.example.gui.standart.LoadGameFrame;
+import org.example.gui.standart.NewGameFrame;
+import org.example.gui.standart.PlayFrame;
 
 import javax.swing.*;
 import java.io.File;
@@ -17,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.example.Main.currentEvent;
-import static org.example.Main.currentLore;
 
 /**
  *
