@@ -96,4 +96,7 @@ public class GUIHandler {
         return stringArray;
     }
     
+    public void reloadGameEditorFrame(){
+    }
+    
 }

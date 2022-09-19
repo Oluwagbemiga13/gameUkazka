@@ -20,6 +20,7 @@ public class GameGenerator {
         return new Player(name, 100, 5);
     }
 
+
     public static Creature createWitch(){
         return new NPC("Witch", 25, 5);
     }

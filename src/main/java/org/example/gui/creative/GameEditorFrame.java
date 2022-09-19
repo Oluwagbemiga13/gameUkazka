@@ -6,13 +6,21 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui.creative;
 
+import org.example.Event;
+
 import static org.example.Main.guiHandler;
+import static org.example.tools.CreativeConstructor.getStringArrFromEventArrList;
+import  static org.example.tools.CreativeLedger.creativeEventArray;
 
 /**
  *
  * @author Daniel
  */
 public class GameEditorFrame extends javax.swing.JFrame {
+
+//    public void reloadList(){
+//        eventList;
+//    }
 
     /**
      * Creates new form GameEditorFrame
@@ -31,27 +39,23 @@ public class GameEditorFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        eventList = new javax.swing.JList<>();
         addEventButton = new javax.swing.JButton();
         moveUpButton = new javax.swing.JButton();
         deleteEventButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        eventTextField = new javax.swing.JTextField();
         moveDownButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
+        testPrintButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(eventList);
 
         addEventButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         addEventButton.setText("ADD EVENT");
@@ -77,8 +81,8 @@ public class GameEditorFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("EVENT INFO");
+        eventTextField.setEditable(false);
+        eventTextField.setText("EVENT INFO");
 
         moveDownButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         moveDownButton.setText("MOVE DOWN");
@@ -107,6 +111,14 @@ public class GameEditorFrame extends javax.swing.JFrame {
 
         nameTextField.setText("GameName");
 
+        testPrintButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        testPrintButton.setText("TEST PRINT");
+        testPrintButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testPrintButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,7 +129,7 @@ public class GameEditorFrame extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                            .addComponent(eventTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -130,7 +142,8 @@ public class GameEditorFrame extends javax.swing.JFrame {
                     .addComponent(deleteEventButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(moveDownButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameTextField))
+                    .addComponent(nameTextField)
+                    .addComponent(testPrintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(192, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -162,8 +175,10 @@ public class GameEditorFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(eventTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(testPrintButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(53, 53, 53)
@@ -196,6 +211,14 @@ public class GameEditorFrame extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void testPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testPrintButtonActionPerformed
+        // TODO add your handling code here:
+        for(Event e : creativeEventArray){
+            System.out.println(e.typeOfEventVar.toString());
+        }
+
+    }//GEN-LAST:event_testPrintButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,15 +258,16 @@ public class GameEditorFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEventButton;
     private javax.swing.JButton deleteEventButton;
+    private javax.swing.JList<String> eventList;
+    private javax.swing.JTextField eventTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton moveDownButton;
     private javax.swing.JButton moveUpButton;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton testPrintButton;
     // End of variables declaration//GEN-END:variables
 }

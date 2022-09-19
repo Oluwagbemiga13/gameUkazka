@@ -6,7 +6,13 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui.creative;
 
+import org.example.Creature;
+
+import static org.example.Main.guiHandler;
 import static org.example.tools.GUIHandler.savedFrame;
+import static org.example.tools.GameGenerator.*;
+import static org.example.tools.CreativeLedger.creativeCreature;
+
 
 /**
  *
@@ -119,6 +125,19 @@ public class PickCreatureFrame extends javax.swing.JFrame {
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         // TODO add your handling code here:
+        String name = creatureComboBox.getSelectedItem().toString();
+        if(name.equals("Witch")){
+            creativeCreature = createWitch();
+        }
+        else if (name.equals("Skeleton")){
+            creativeCreature =createSkeleton();
+        }
+        else {
+            creativeCreature =createDragon();
+        }
+        this.dispose();
+        guiHandler.createAddMessageFrame();
+
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

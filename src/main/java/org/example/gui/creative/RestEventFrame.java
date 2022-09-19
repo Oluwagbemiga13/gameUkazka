@@ -9,7 +9,7 @@ package org.example.gui.creative;
 import org.example.Event;
 import org.example.tools.CreativeLedger;
 
-import static org.example.tools.CreativeConstructor.creativeEvent;
+import static org.example.tools.CreativeConstructor.creativeEventRest;
 import static org.example.tools.GUIHandler.savedFrame;
 
 /**
@@ -158,7 +158,7 @@ public class RestEventFrame extends javax.swing.JFrame {
         int minusHP = Integer.parseInt(minusHpPoints.getText());
 
 
-        Event e = creativeEvent(message,plusHP,minusHP);
+        Event e = creativeEventRest(message,plusHP,minusHP);
         CreativeLedger.creativeEventArray.add(e);
 
         this.dispose();

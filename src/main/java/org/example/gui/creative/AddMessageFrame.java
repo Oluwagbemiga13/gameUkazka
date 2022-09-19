@@ -6,6 +6,11 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui.creative;
 
+import static org.example.tools.CreativeConstructor.creativeEventFight;
+import static org.example.tools.CreativeLedger.creativeCreature;
+import static org.example.tools.CreativeLedger.creativeEventArray;
+import static org.example.tools.GUIHandler.savedFrame;
+
 /**
  *
  * @author Daniel
@@ -96,6 +101,13 @@ public class AddMessageFrame extends javax.swing.JFrame {
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         // TODO add your handling code here:
+        String message = messageTextArea.getText().concat("\n" + creativeCreature.name + " " + creativeCreature.hP +
+                "/" + creativeCreature.attackPoints + ". Do you want to attack?");
+
+        creativeEventArray.add(creativeEventFight(creativeCreature,message));
+        this.dispose();
+        savedFrame.setVisible(true);
+        System.out.println(message);
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

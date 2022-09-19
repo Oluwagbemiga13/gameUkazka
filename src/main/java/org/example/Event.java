@@ -126,6 +126,13 @@ public class Event implements Serializable {
         creativeEventArray.add(this);
     }
 
+    public Event(Creature creature, String message){
+        this.creature = creature;
+        this.typeOfEventVar = TypeOfEvent.FIGHT;
+        this.message = message;
+        creativeEventArray.add(this);
+    }
+
     public void consumeEvent(){
         System.out.println(message);
 

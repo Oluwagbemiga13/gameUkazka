@@ -37,7 +37,7 @@ public class Creature  implements Serializable {
         positionArrayList = counterOfNPCCreated;
         counterOfNPCCreated++;
 
-        creatureArrayList.add(this);
+        //creatureArrayList.add(this);
 
         System.out.println("\n" + this.name + " was created" + " " + this.attackPoints + "/" + this.hP);
     }
