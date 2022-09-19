@@ -6,6 +6,9 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui;
 
+import static org.example.Main.guiHandler;
+import static org.example.tools.GUIHandler.savedFrame;
+
 /**
  *
  * @author Daniel
@@ -33,6 +36,7 @@ public class PickEventFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         restButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         restButton.setText("REST");
@@ -82,14 +86,19 @@ public class PickEventFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void fightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightButtonActionPerformed
         // TODO add your handling code here:
+        guiHandler.createPickCreatureFrame();
+        this.dispose();
     }//GEN-LAST:event_fightButtonActionPerformed
 
     private void restButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restButtonActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        guiHandler.createRestEventFrame();
     }//GEN-LAST:event_restButtonActionPerformed
 
     /**

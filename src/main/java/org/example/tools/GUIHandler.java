@@ -10,6 +10,7 @@ package org.example.tools;
 import org.example.Event;
 import org.example.gui.*;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
@@ -23,6 +24,8 @@ import static org.example.Main.currentLore;
  * @author Daniel
  */
 public class GUIHandler {
+    
+    public static JFrame savedFrame;
     
     public void createFirstFrame(){
         FirstFrame firstWindow = new FirstFrame();
@@ -38,6 +41,7 @@ public class GUIHandler {
     public void createGameEditorFrame(){
         GameEditorFrame gameEditorFrame = new GameEditorFrame();
         gameEditorFrame.setVisible(true);
+        savedFrame = gameEditorFrame;
     }
     
     public void createLoadGameFrame(){
@@ -65,6 +69,12 @@ public class GUIHandler {
     public void createPickEventFrame(){
         PickEventFrame pickEventFrame = new PickEventFrame();
         pickEventFrame.setVisible(true);
+    }
+    
+    
+    public void createRestEventFrame(){
+        RestEventFrame restEventFrame = new RestEventFrame();
+        restEventFrame.setVisible(true);
     }
  
 

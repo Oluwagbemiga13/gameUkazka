@@ -6,6 +6,8 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui;
 
+import static org.example.tools.GUIHandler.savedFrame;
+
 /**
  *
  * @author Daniel
@@ -35,6 +37,7 @@ public class PickCreatureFrame extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Creature");
@@ -107,6 +110,7 @@ public class PickCreatureFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void createOwnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOwnButtonActionPerformed
@@ -119,6 +123,8 @@ public class PickCreatureFrame extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        savedFrame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void creatureComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creatureComboBoxActionPerformed
