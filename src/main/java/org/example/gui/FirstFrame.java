@@ -36,6 +36,7 @@ public class FirstFrame extends javax.swing.JFrame {
         loadGameButton = new javax.swing.JButton();
         Credits = new javax.swing.JButton();
         pictureLabel = new javax.swing.JLabel();
+        creativeModeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,12 +67,22 @@ public class FirstFrame extends javax.swing.JFrame {
 
         pictureLabel.setText("picture");
 
+        creativeModeButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        creativeModeButton.setText("Creative mode");
+        creativeModeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creativeModeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
+                .addComponent(creativeModeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Credits, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
@@ -96,7 +107,9 @@ public class FirstFrame extends javax.swing.JFrame {
                     .addComponent(loadGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
-                .addComponent(Credits, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Credits, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(creativeModeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
 
@@ -119,6 +132,12 @@ public class FirstFrame extends javax.swing.JFrame {
     private void CreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CreditsActionPerformed
+
+    private void creativeModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creativeModeButtonActionPerformed
+        // TODO add your handling code here:
+        guiHandler.createGameEditorFrame();
+        this.dispose();
+    }//GEN-LAST:event_creativeModeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +179,7 @@ public class FirstFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Credits;
+    private javax.swing.JButton creativeModeButton;
     private javax.swing.JButton loadGameButton;
     private javax.swing.JButton newGameButton;
     private javax.swing.JLabel pictureLabel;

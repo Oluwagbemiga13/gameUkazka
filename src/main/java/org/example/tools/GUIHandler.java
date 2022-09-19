@@ -8,10 +8,7 @@ package org.example.tools;
 
 
 import org.example.Event;
-import org.example.gui.FirstFrame;
-import org.example.gui.LoadGameFrame;
-import org.example.gui.NewGameFrame;
-import org.example.gui.PlayFrame;
+import org.example.gui.*;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -36,6 +33,11 @@ public class GUIHandler {
         NewGameFrame newGameFrame = new NewGameFrame();
         newGameFrame.setVisible(true);
         
+    }
+
+    public void createGameEditorFrame(){
+        GameEditorFrame gameEditorFrame = new GameEditorFrame();
+        gameEditorFrame.setVisible(true);
     }
     
     public void createLoadGameFrame(){
