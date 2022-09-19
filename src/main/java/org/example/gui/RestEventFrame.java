@@ -6,6 +6,8 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package org.example.gui;
 
+import static org.example.tools.GUIHandler.savedFrame;
+
 /**
  *
  * @author Daniel
@@ -151,6 +153,8 @@ public class RestEventFrame extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        savedFrame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
