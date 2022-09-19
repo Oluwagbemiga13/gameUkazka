@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import static org.example.Creature.fight;
+import static org.example.Main.currentLore;
 import static org.example.tools.GameGenerator.*;
 import static org.example.Main.input;
 
@@ -33,6 +34,25 @@ public class Event implements Serializable {
         REST,
         FIND
     }
+
+    public boolean isOnEndOfArray(){
+       int index =  currentLore.eventArrayList.indexOf(this);
+       boolean isAtEnd = false;
+       if(index == currentLore.eventArrayList.size() - 1){
+           isAtEnd = true;
+       }
+       return isAtEnd;
+    }
+
+    public boolean isOnBeginningOfArray(){
+        int index =  currentLore.eventArrayList.indexOf(this);
+        boolean isAtBeginning = false;
+        if(index == 0){
+            isAtBeginning = true;
+        }
+        return isAtBeginning;
+    }
+
 
     public static Creature returnFirstAlive(ArrayList<Creature> creatures){
         Creature creature = null;

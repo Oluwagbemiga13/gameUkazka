@@ -7,6 +7,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package org.example.tools;
 
 
+import org.example.Event;
 import org.example.gui.FirstFrame;
 import org.example.gui.LoadGameFrame;
 import org.example.gui.NewGameFrame;
@@ -16,6 +17,9 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.example.Main.currentEvent;
+import static org.example.Main.currentLore;
 
 /**
  *
@@ -42,7 +46,7 @@ public class GUIHandler {
     public void createPlayFrame(){
         PlayFrame playFrame = new PlayFrame();
         playFrame.setVisible(true);
-        playFrame.setFrameFightDecision();
+        playFrame.checkAndSetFrame(currentEvent);
     }
 
     public String [] getFilesNames (){

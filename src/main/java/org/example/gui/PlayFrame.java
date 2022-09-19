@@ -11,10 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.example.Event;
 
+import static java.lang.Math.round;
 import static org.example.Creature.fight;
 import static org.example.Creature.pickUpItems;
-import static org.example.Main.currentEvent;
-import static org.example.Main.currentLore;
+import static org.example.Main.*;
 import static org.example.tools.GameGenerator.currentPlayer;
 import static org.example.tools.SerTool.saveLore;
 
@@ -96,7 +96,6 @@ public class PlayFrame extends javax.swing.JFrame {
 
 
     }
-
     public void updateMessage(){
         currentMessage = currentEvent.message;
         messageTextArea.setText(currentMessage);
@@ -111,6 +110,33 @@ public class PlayFrame extends javax.swing.JFrame {
         }
         if(event.typeOfEventVar.equals(Event.TypeOfEvent.FIND)){
             System.out.println("NEED TO IMPLEMENT");
+        }
+    }
+
+    public static void goRandomDirection(){
+        int random = (int) round(dice.nextDouble() * 10);
+        int indexCurrentEvent = currentLore.eventArrayList.indexOf(currentEvent);
+        int sizeOfArray = currentLore.eventArrayList.size();
+        int indexNextEvent;
+        if(random < 5){
+            if(currentEvent.isOnBeginningOfArray()){
+                currentEvent = currentLore.eventArrayList.get(sizeOfArray - 1);
+                System.out.println(currentEvent.positionInLoreArray);
+            }
+            else {
+                currentEvent = currentLore.eventArrayList.get(indexCurrentEvent - 1);
+                System.out.println(currentEvent.positionInLoreArray);
+            }
+        }
+        else {
+            if(currentEvent.isOnEndOfArray()){
+                currentEvent = currentLore.eventArrayList.get(0);
+                System.out.println(currentEvent.positionInLoreArray);
+            }
+            else {
+                currentEvent = currentLore.eventArrayList.get(indexCurrentEvent + 1);
+                System.out.println(currentEvent.positionInLoreArray);
+            }
         }
     }
 
@@ -355,6 +381,10 @@ public class PlayFrame extends javax.swing.JFrame {
 
     private void noButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noButtonActionPerformed
         // TODO add your handling code here:
+        goRandomDirection();
+        checkAndSetFrame(currentEvent);
+        updateMessage();
+
     }//GEN-LAST:event_noButtonActionPerformed
 
     private void attackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButtonActionPerformed
@@ -369,6 +399,10 @@ public class PlayFrame extends javax.swing.JFrame {
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
         // TODO add your handling code here:
+        goRandomDirection();
+        checkAndSetFrame(currentEvent);
+        updateMessage();
+
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
