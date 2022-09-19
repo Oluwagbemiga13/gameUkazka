@@ -45,7 +45,6 @@ public class PlayFrame extends javax.swing.JFrame {
 
         }
     }
-
     public void updateStats(){
         healthNPCLabel.setVisible(true);
         healthNPCLabel1.setVisible(true);
@@ -100,7 +99,6 @@ public class PlayFrame extends javax.swing.JFrame {
         currentMessage = currentEvent.message;
         messageTextArea.setText(currentMessage);
     }
-
     public void checkAndSetFrame(Event event){
         if(event.typeOfEventVar.equals(Event.TypeOfEvent.FIGHT)){
             setFrameFightDecision();
@@ -112,7 +110,6 @@ public class PlayFrame extends javax.swing.JFrame {
             System.out.println("NEED TO IMPLEMENT");
         }
     }
-
     public static void goRandomDirection(){
         int random = (int) round(dice.nextDouble() * 10);
         int indexCurrentEvent = currentLore.eventArrayList.indexOf(currentEvent);

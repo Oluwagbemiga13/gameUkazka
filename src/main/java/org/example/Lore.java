@@ -74,4 +74,6 @@ public class Lore implements Serializable {
             }
         }
     }
+
+
 }

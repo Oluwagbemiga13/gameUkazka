@@ -49,7 +49,24 @@ public class GUIHandler {
         PlayFrame playFrame = new PlayFrame();
         playFrame.setVisible(true);
         playFrame.checkAndSetFrame(currentEvent);
+       
     }
+    
+    public void createAddMessageFrame(){
+        AddMessageFrame addMessageFrame = new AddMessageFrame();
+        addMessageFrame.setVisible(true);
+    }
+    
+    public void createPickCreatureFrame(){
+        PickCreatureFrame pickCreatureFrame = new PickCreatureFrame();
+        pickCreatureFrame.setVisible(true);
+    }
+    
+    public void createPickEventFrame(){
+        PickEventFrame pickEventFrame = new PickEventFrame();
+        pickEventFrame.setVisible(true);
+    }
+ 
 
     public String [] getFilesNames (){
         // get all files in the folder excluding sub-folders

@@ -73,23 +73,8 @@ public class GameGenerator {
         return player;
     }
 
-
-
-    public void fillGameWithCreatures(ArrayList<Creature> createdCreatures){
-    }
-
-
-
     public GameGenerator (String name){
         creatureArrayList = new ArrayList<>();
         itemArrayList = new ArrayList<>();
-    }
-
-    public static void fillNPCsLootInventory(ArrayList<Creature> inputCreatureArrayList){
-       /* for(Creature creature : inputCreatureArrayList){
-            creature.fillNPCInventory();
-        }
-
-        */
     }
 }

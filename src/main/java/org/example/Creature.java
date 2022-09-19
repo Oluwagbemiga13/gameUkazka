@@ -15,21 +15,16 @@ public class Creature  implements Serializable {
     public int attackPoints;
     public boolean isDead;
     public int positionArrayList;
-
     public Weapon equipedWeapon = null;
-
     public static String nameOfPlayer = "Daniel";
-
     public static int counterOfNPCCreated = 0;
     public ArrayList<Weapon> weaponInventory;
-
     ArrayList<Item> lootInventory;
-
     ArrayList<Item> itemInventory;
 
     boolean isSetInLore;
 
-    // CONSTRUCTOR
+    // CONSTRUCTOR AUTO
     public Creature(String name, int hP, int attackPoints){
         this.name = name;
         this.hP = hP;
@@ -46,6 +41,16 @@ public class Creature  implements Serializable {
 
         System.out.println("\n" + this.name + " was created" + " " + this.attackPoints + "/" + this.hP);
     }
+
+    // CONSTRUCTOR CREATIVE
+    public Creature(String name, int hP, int attackPoints, Weapon weapon){
+        this.name = name;
+        this.hP = hP;
+        this.attackPoints = attackPoints;
+        this.weaponInventory.add(weapon);
+        this.itemInventory.add(weapon);
+    }
+
 
     public void die(){
         int indexToDelete = this.positionArrayList;
@@ -173,4 +178,5 @@ public class Creature  implements Serializable {
             }
         }
     }
+
 
