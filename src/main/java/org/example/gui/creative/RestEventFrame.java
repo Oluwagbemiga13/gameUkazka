@@ -9,6 +9,7 @@ package org.example.gui.creative;
 import org.example.Event;
 import org.example.tools.CreativeLedger;
 
+import static org.example.Main.guiHandler;
 import static org.example.tools.CreativeConstructor.creativeEventRest;
 import static org.example.tools.GUIHandler.savedFrame;
 
@@ -45,6 +46,7 @@ public class RestEventFrame extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         messageTextArea.setColumns(20);
         messageTextArea.setRows(5);
@@ -141,6 +143,7 @@ public class RestEventFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void plusHpFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusHpFieldActionPerformed
@@ -159,10 +162,11 @@ public class RestEventFrame extends javax.swing.JFrame {
 
 
         Event e = creativeEventRest(message,plusHP,minusHP);
-        CreativeLedger.creativeEventArray.add(e);
+        //CreativeLedger.creativeEventArray.add(e);
 
         this.dispose();
-        savedFrame.setVisible(true);
+        guiHandler.createGameEditorFrame();
+        //savedFrame.setVisible(true);
 
         System.out.println("MESSAGE: " + e.message + "\n PLUS/MINUS" + e.plusHP + "/" + e.minusHP);
 
@@ -171,7 +175,8 @@ public class RestEventFrame extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        savedFrame.setVisible(true);
+        guiHandler.createGameEditorFrame();
+        //savedFrame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**

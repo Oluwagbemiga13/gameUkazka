@@ -8,9 +8,12 @@ package org.example.gui.creative;
 
 import org.example.Event;
 
+import javax.swing.*;
+
 import static org.example.Main.guiHandler;
 import static org.example.tools.CreativeConstructor.getStringArrFromEventArrList;
 import  static org.example.tools.CreativeLedger.creativeEventArray;
+import  static org.example.tools.GUIHandler.savedFrame;
 
 /**
  *
@@ -21,6 +24,8 @@ public class GameEditorFrame extends javax.swing.JFrame {
 //    public void reloadList(){
 //        eventList;
 //    }
+
+
 
     /**
      * Creates new form GameEditorFrame
@@ -55,6 +60,11 @@ public class GameEditorFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        eventList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = guiHandler.getEventsNames(creativeEventArray);
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane1.setViewportView(eventList);
 
         addEventButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -202,6 +212,10 @@ public class GameEditorFrame extends javax.swing.JFrame {
 
     private void deleteEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEventButtonActionPerformed
         // TODO add your handling code here:
+        int indexToDelete = eventList.getSelectedIndex();
+        creativeEventArray.remove(indexToDelete);
+        this.dispose();
+        guiHandler.createGameEditorFrame();
     }//GEN-LAST:event_deleteEventButtonActionPerformed
 
     private void moveDownButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveDownButtonActionPerformed

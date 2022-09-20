@@ -143,7 +143,8 @@ public class PickCreatureFrame extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        savedFrame.setVisible(true);
+        guiHandler.createGameEditorFrame();
+        //savedFrame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void creatureComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creatureComboBoxActionPerformed

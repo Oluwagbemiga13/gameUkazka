@@ -7,6 +7,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package org.example.tools;
 
 
+import org.example.Event;
 import org.example.gui.creative.*;
 import org.example.gui.standart.FirstFrame;
 import org.example.gui.standart.LoadGameFrame;
@@ -16,10 +17,12 @@ import org.example.gui.standart.PlayFrame;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileFilter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.example.Main.currentEvent;
+import static org.example.Main.guiHandler;
 
 /**
  *
@@ -28,6 +31,7 @@ import static org.example.Main.currentEvent;
 public class GUIHandler {
     
     public static JFrame savedFrame;
+    public static JList<String> ledgerList;
     
     public void createFirstFrame(){
         FirstFrame firstWindow = new FirstFrame();
@@ -96,7 +100,21 @@ public class GUIHandler {
         return stringArray;
     }
     
-    public void reloadGameEditorFrame(){
+    public String [] getEventsNames (ArrayList<Event> eventArrayList){
+        String [] nameArray = new String[eventArrayList.size()];
+        for(int i = 0; i < eventArrayList.size(); i++){
+            Event event = eventArrayList.get(i);
+            nameArray [i] = event.typeOfEventVar.toString() + "_" + String.valueOf(i);
+        }
+        return nameArray;
+    }
+
+    public void setListModel(JList<String> eventList, ArrayList<Event> eventArrayList){
+        eventList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = guiHandler.getEventsNames(eventArrayList);
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
     }
     
 }
